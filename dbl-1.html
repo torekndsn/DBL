@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DBL v1</title>
+</head>
+
+<style type="text/css">
+	#outputText{
+		width: 300px;
+	    height: 200px;
+	    border: 1px solid #ccc;
+	    padding: 5px;
+	}
+</style>
+
+
+
+<body>
+<h1>Digital Body Langauge test</h1>
+<textarea id="inputText" rows=5 cols=80 wrap=on>Write messeage here</textarea>
+<!-- <textarea id="outputText" rows=5 cols=80 wrap=on readonly></textarea> -->
+<div id="outputText" ></div> 
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://api.jquery.com/resources/events.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		var previousMillis = 0;
+		var interval = 0; 	
+		var currentMillis; 	
+		var space = "";
+
+
+		// Listen for keyPressed
+		$("#inputText").keyup(function( event ){
+			var input = $(this).val();
+			var inputTest = $("#outputText").text();
+			console.log(input);
+
+			var words = $(inputTest).text().split(" ");
+			$("#outputText").empty();
+			//$("input").empty(); 
+			$.each(words, function(i, v) {
+				$("#outputText").append($("<span>").text(v));
+			}); 
+
+			 
+
+			$("#outputText").html(input);
+			if(input.length > 0 && input != "Write messeage here"){
+			currentMillis = event.timeStamp;
+			interval = currentMillis - previousMillis; 
+			previousMillis = currentMillis;
+
+			console.log(interval);
+
+			if(interval > 2000){
+			space ="__";
+			}
+			$("#outputText").val(input + space);
+
+			}
+		});
+	})
+</script>
+</body>
+</html>

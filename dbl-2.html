@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DBL v1</title>
+</head>
+
+<style type="text/css">
+	.textBox{
+		width: 300px;
+	    height: 200px;
+	    border: 1px solid #ccc;
+	    padding: 5px;
+	}
+</style>
+
+
+
+<body>
+<h1>Digital Body Langauge test</h1>
+<!--<textarea id="inputText" rows=5 cols=80 wrap=on>Write messeage here</textarea> -->
+<!-- <textarea id="outputText" rows=5 cols=80 wrap=on readonly></textarea> -->
+<div id="inputText" class="textBox" contenteditable="true"> </div>
+<div id="outputText" class="textBox"></div> 
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://api.jquery.com/resources/events.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		var defaultText = "";
+		$("#inputText").text(defaultText);
+
+		var previousMillis = 0;
+		var interval = 0; 	
+		var currentMillis; 	
+
+		var wordValues = []; 
+		var avrTimeTempo = 6.45; 
+		var wordSpeed = 0; 
+		var charCount = 0; 
+
+		var col = "black";
+		var size = 16;
+		var tracking = 0;
+		 //var spacing = 0; 
+
+		// Listen for keyPressed
+		$("#inputText").keyup(function( event ){
+			console.clear();
+			//get text from input text box
+			var input = $(this).text(); 	
+			//split input text into array of words. 
+			var words = input.split(" ");
+			$("#outputText").empty();
+
+			//Get timestamp
+			if(words.length > 0 && input != defaultText){
+			//get interval in millis between each stroke.	
+			currentMillis = event.timeStamp;
+			interval = currentMillis - previousMillis; 
+			previousMillis = currentMillis;
+			//console.log(words.length);
+
+			//count word speed and char hit
+			wordSpeed += interval; 
+			charCount++; 
+
+			// calculate valus for word and reset
+			if(event.key == ' '){
+				var avrSpeed = Math.sqrt(wordSpeed / charCount) / 2;	
+				wordSpeed = 0; 
+				charCount = 0; 
+				tracking = map_range(avrSpeed, 4.0,8.0,-2.0, 4.0);
+
+				wordValues.push({tracking: tracking, color: col, size: size}); 
+				//console.log(wordValues);
+
+			}
+		}
+
+
+
+		
+			/* jQuery.each(wordValues, function(i, val) { 
+ 			 console.log(wordValues[i].tracking); 
+				}); */ 
+
+			//iterater over each word and add a span around the word. 
+			 //jQuery.each(words, function(i, v) {
+
+				for(var i = 0; i < wordValues.length; i++){
+				//console.log(words[i]);
+			 	//console.log(wordValues[i].tracking);
+			 	var v = words[i];
+			 	//tracking = wordValues[i].tracking; 
+
+			 	var newStyle = "<span " + 
+				"style=\"color:" + col +
+				";font-size:" + size + "px" +
+				";letter-spacing:" + tracking + "px" +
+				";\">";
+				console.log("newStyle: " + newStyle);
+				console.log("World: " + v); 
+
+
+				$("#outputText").append( $(newStyle + v + " " + "</span>"));
+			};		
+		});
+
+	})
+
+
+	function map_range(value, low1, high1, low2, high2) {
+    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
+</script>
+</body>
+</html>
