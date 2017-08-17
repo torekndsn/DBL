@@ -1,15 +1,31 @@
 
-			  var minTimeTempo = 80;      // MINIMUM interval to consider, this should be good. 
-			  var maxTimeTempo = 350;   // Maximum interval to consider, much delay than 250 will become more as a pause i guess. 
-			  var avrTimeTempo = 185; // The avarage texting time for a person.		  
-			  var minValTempo = -2; // the amount of visual impact in the narrowing the kerning of a sentence.
-			  var maxValTempo = 15; // the amount of visual impact in increasing the kerning of a sentence.
-			  var minTimeSpace = 500;
-
-			  var maxTimeSpace = 3000
+		
+	 	var avrTimeTempo = 185; // The avarage texting time for a person.		  
 
 
 
+		/////////////////////////////////////////////////
+		//------------- T R A C K I N G ---------------//
+		/////////////////////////////////////////////////
+
+		function typingSpeed(totalSpeed_, keyCount_){
+			var avrSpeed_ = totalSpeed_ / keyCount_;
+			var trackingValue;
+			console.log("avrSpeed: " + avrSpeed_);
+			//var tracking = map_range(avrSpeed, )
+			if(avrSpeed_ > 180 ){
+				trackingValue = map_range(avrSpeed_, 180, 320, 0, 7);
+				trackingValue = constrain_value(trackingValue, 0, 7);
+			 }
+			 else if(avrSpeed_ < 120){
+			 	trackingValue = map_range(avrSpeed_, 60, 120, -3, 0);
+				trackingValue = constrain_value(trackingValue, -3, 0);
+			 }
+			 else trackingValue = 0;
+
+			 console.log("tracking value: " + trackingValue);
+			 return trackingValue;
+			}
 
 
 

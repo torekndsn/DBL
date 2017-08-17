@@ -1,7 +1,7 @@
 
 
 function DBL(){
-	// i made a NEW change!! 
+	// Font color
 	//Variables 
 
 	var values = [];
@@ -15,12 +15,15 @@ function DBL(){
 	var previousKey;
 
 	var lastWord = "";
-	var lastWordMeta = "";
 	var fontSize; 
+
+	var totalSpeed = 0;
+	var keyCount = 0; 
 
 
 	var deletedWordsCount = 0; 
 	var spacing;
+	var tracking = 0; 
 	var jumpWord = false; 
 	var lastJumpWord; 
 
@@ -39,12 +42,7 @@ function DBL(){
 		//if something has been typed, record keystroke timestamps.
 		if(inputText.length > 0) timeData = currentMillis - lastKeyHit;
 		
-		// S T A R T  R E C O R D - if text has expanded, a new word is written.
-		if(words.length > lastWordLength || previousKey == " "){
-
-		}
-
-
+	
 
 
 		// S P A C I N G // - if break between words, get time interval to spacing
@@ -60,18 +58,40 @@ function DBL(){
 		if( words.length < lastWordLength) deletedWordsCount++; 
 
 
+
 	
 		// E N D   R E C O R D - if space is hit, a word is done. 
 		if(event.key == " " && words.length > 0){
+			console.log("false");
 
 			if(!jumpWord) fontSize = word_size(deletedWordsCount);
 
+		 	if(keyCount > 1 )tracking = typingSpeed(totalSpeed, keyCount);
+			else tracking = 0;
+			console.log("avrSpeed: " + totalSpeed / keyCount);
+
 			lastWord = words[words.length-1];
-			values.push({word: lastWord, spacing: spacing, size: fontSize });
+			values.push({word: lastWord, spacing: spacing, size: fontSize, tracking: tracking });
 
 			//reset 
 			deletedWordsCount = 0;
 			jumpWord = false; 
+			totalSpeed = 0;
+			keyCount = 0; 
+		}
+
+		// T R A C K I N G 
+		else{
+			if(event.key != 'Backspace' && inputText.length > 1){
+				console.log("tracking record");
+
+				totalSpeed += timeData;
+				keyCount++;
+
+				//console.log("time data " + timeData);
+				//console.log("keyCount: " + keyCount);
+
+			}
 		}
 	
 		// D E L E T E    W O R D S   F R O M    A R R A Y - if words have been deleted, remove from array. 
@@ -91,22 +111,11 @@ function DBL(){
 			values[values.length-1].size = fontSize;
 		}
 		if(jumpWord == false && lastJumpWord == true){
-			console.log("font size: " + fontSize);
 			values[values.length-1].size = fontSize;		
 		}
 		if(jumpWord) values[values.length-1].size = 16;
 
 			
-
-		console.log("jumpWord: " + jumpWord);
-		console.log("lastJumpWord: " + lastJumpWord);
-		//console.log("words: " + words);
-		//console.log("last word meta: " + lastWordMeta);
-		//console.log("previous key: " + previousKey);
-		//console.log("last word length: " + lastWordLength);
-		//console.log("sizing: " + values[values.length-1].size);
-
-
 
 		// A P P L Y I N G   S T Y L E 
 
@@ -116,10 +125,12 @@ function DBL(){
 			 	var w = values[i].word;
 			 	var spacing_ = values[i].spacing;
 			 	var size_ = values[i].size;
+			 	var tracking_ = values[i].tracking;
 	
 			 	var newStyle = "<span " + 
 				"style=\"padding-right:" + spacing_ +"px" + 
-				";font-size:" + size_ + "px" +
+				";font-size:" + size_ + "px" + 
+				";letter-spacing:" + tracking_ + "px" +
 				";\">";
 			//	console.log(newStyle + w + " " + "</span>");	
 				$("#outputText").append( $(newStyle + w + " " + "</span>"));
