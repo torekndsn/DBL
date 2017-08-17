@@ -19,16 +19,18 @@ function DBL(){
 
 	var totalSpeed = 0;
 	var keyCount = 0; 
+	var topTime = 0; 
 
 
 	var deletedWordsCount = 0; 
 	var spacing;
 	var tracking = 0; 
+	var color = 90;
 	var jumpWord = false; 
 	var lastJumpWord; 
 
 
-///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
+	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
 	$("#inputText").keydown(function( event ){
 		console.clear(); 
 	 	currentMillis = event.timeStamp;
@@ -68,19 +70,20 @@ function DBL(){
 
 		 	if(keyCount > 1 )tracking = typingSpeed(totalSpeed, keyCount);
 			else tracking = 0;
-			console.log("avrSpeed: " + totalSpeed / keyCount);
+			console.log("pause color: " + color);
 
 			lastWord = words[words.length-1];
-			values.push({word: lastWord, spacing: spacing, size: fontSize, tracking: tracking });
+			values.push({word: lastWord, spacing: spacing, size: fontSize, tracking: tracking, color: color });
 
 			//reset 
 			deletedWordsCount = 0;
 			jumpWord = false; 
 			totalSpeed = 0;
 			keyCount = 0; 
+			topTime = 0;
 		}
 
-		// T R A C K I N G 
+		// T R A C K I N G   A N D   P A U S E   C O L O R
 		else{
 			if(event.key != 'Backspace' && inputText.length > 1){
 				console.log("tracking record");
@@ -88,9 +91,10 @@ function DBL(){
 				totalSpeed += timeData;
 				keyCount++;
 
-				//console.log("time data " + timeData);
-				//console.log("keyCount: " + keyCount);
-
+				if(timeData > topTime){
+					 topTime = timeData;
+				     color = pauseColor(topTime);
+				 }
 			}
 		}
 	
@@ -126,11 +130,15 @@ function DBL(){
 			 	var spacing_ = values[i].spacing;
 			 	var size_ = values[i].size;
 			 	var tracking_ = values[i].tracking;
+
+			 	var col_ = values[i].color;
+			 	var newCol = "rgb(" + col_ + "," + col_ + "," + col_ + ")";
 	
 			 	var newStyle = "<span " + 
 				"style=\"padding-right:" + spacing_ +"px" + 
 				";font-size:" + size_ + "px" + 
 				";letter-spacing:" + tracking_ + "px" +
+				";color:" + newCol +
 				";\">";
 			//	console.log(newStyle + w + " " + "</span>");	
 				$("#outputText").append( $(newStyle + w + " " + "</span>"));

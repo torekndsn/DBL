@@ -17,8 +17,8 @@
 				trackingValue = map_range(avrSpeed_, 180, 320, 0, 7);
 				trackingValue = constrain_value(trackingValue, 0, 7);
 			 }
-			 else if(avrSpeed_ < 120){
-			 	trackingValue = map_range(avrSpeed_, 60, 120, -3, 0);
+			 else if(avrSpeed_ < 150){
+			 	trackingValue = map_range(avrSpeed_, 60, 150, -3, 0);
 				trackingValue = constrain_value(trackingValue, -3, 0);
 			 }
 			 else trackingValue = 0;
@@ -26,6 +26,21 @@
 			 console.log("tracking value: " + trackingValue);
 			 return trackingValue;
 			}
+
+
+
+
+		/////////////////////////////////////////////////
+		//----------------- C O L O R -----------------//
+		/////////////////////////////////////////////////
+		function pauseColor(topTime){
+			if(topTime > 1000){
+				var tracking = map_range(topTime, 700, 2500, 90, 0);
+				tracking = constrain_value(tracking, 0, 90);
+				return tracking;
+			}
+			else return 90;
+		}
 
 
 
@@ -38,7 +53,7 @@
 			var interval = timeData;
 			if(interval > 1000) {
 					console.log("interval: " + interval);
-				var spacing = map_range(interval, 500,3000,5,50);
+				var spacing = map_range(interval, 1000,3000,5,50);
 				spacing = constrain_value(spacing,0,50);
 				return spacing;
 			} else return 0; 		
