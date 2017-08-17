@@ -35,7 +35,7 @@
 		///////////////////////////////////////////////
 
 		function word_size(deleteCount){
-			var newSize = map_range(deleteCount, 0, 4,16, 40);
+			var newSize = map_range(deleteCount, 0, 6,16, 40);
 			newSize = constrain_value(newSize,16, 40);
 			return newSize; 
 	    }

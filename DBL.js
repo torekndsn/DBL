@@ -21,6 +21,8 @@ function DBL(){
 
 	var deletedWordsCount = 0; 
 	var spacing;
+	var jumpWord = false; 
+	var lastJumpWord; 
 
 
 ///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
@@ -45,9 +47,6 @@ function DBL(){
 
 
 
-
-
-
 		// S P A C I N G // - if break between words, get time interval to spacing
 		if(previousKey == " " || event.key == " "){
 			spacing = word_spacing(timeData);
@@ -57,49 +56,55 @@ function DBL(){
 		}
 		else spacing = 0; 
 
-		// D E L E T I N G // - if words are delted, it chould affect font-size of next word
+		// D E L E T I N G   R U L E // - if words are delted, it chould affect font-size of next word
 		if( words.length < lastWordLength) deletedWordsCount++; 
-		//console.log("deletedWordsCount: " + deletedWordsCount);
 
 
-
-		//get last word for meta information
-		lastWordMeta = words[words.length-1];
-			
+	
 		// E N D   R E C O R D - if space is hit, a word is done. 
 		if(event.key == " " && words.length > 0){
 
-			fontSize = word_size(deletedWordsCount);
-		//	console.log("Calculated font size: " + fontSize);
+			if(!jumpWord) fontSize = word_size(deletedWordsCount);
 
 			lastWord = words[words.length-1];
 			values.push({word: lastWord, spacing: spacing, size: fontSize });
 
 			//reset 
 			deletedWordsCount = 0;
+			jumpWord = false; 
 		}
 	
 		// D E L E T E    W O R D S   F R O M    A R R A Y - if words have been deleted, remove from array. 
-
 		while(values.length > words.length) values.splice(values.length-1, 1);
 		var currentWord = values[values.length-1].word;
 		if(lastWord != currentWord) values[values.length-1].word = lastWord; 
 
-		console.log("words: " + words);
-		console.log("last word: " + lastWordMeta);
-		console.log("previous key: " + previousKey);
-		console.log("last word length: " + lastWordLength);
-
-		//Recover fontSize for deleted words
-
-		 values[values.length-1].size = fontSize;
-		
-	 
-		
 
 
 
+		// F I X   D E L E T E   W O R D   B U G - When lastword is not " " after deleting, wrong word is enlarged	 
+		if(event.key == " " && lastWordLength > words.length ){
+			jumpWord = true;
+		}
+		 else{
+		 	if(values[values.length-1].size <= 16)
+			values[values.length-1].size = fontSize;
+		}
+		if(jumpWord == false && lastJumpWord == true){
+			console.log("font size: " + fontSize);
+			values[values.length-1].size = fontSize;		
+		}
+		if(jumpWord) values[values.length-1].size = 16;
 
+			
+
+		console.log("jumpWord: " + jumpWord);
+		console.log("lastJumpWord: " + lastJumpWord);
+		//console.log("words: " + words);
+		//console.log("last word meta: " + lastWordMeta);
+		//console.log("previous key: " + previousKey);
+		//console.log("last word length: " + lastWordLength);
+		//console.log("sizing: " + values[values.length-1].size);
 
 
 
@@ -131,7 +136,7 @@ function DBL(){
  
 
 
-
+		lastJumpWord = jumpWord;
 		previousKey = event.key; 
  		lastWordLength = words.length; 
  		lastKeyHit = event.timeStamp;
