@@ -46,7 +46,6 @@ function DBL(){
 		
 	
 
-
 		// S P A C I N G // - if break between words, get time interval to spacing
 		if(previousKey == " " || event.key == " "){
 			spacing = word_spacing(timeData);
@@ -64,13 +63,14 @@ function DBL(){
 	
 		// E N D   R E C O R D - if space is hit, a word is done. 
 		if(event.key == " " && words.length > 0){
-			console.log("false");
+			console.log("record is off");
 
 			if(!jumpWord) fontSize = word_size(deletedWordsCount);
 
 		 	if(keyCount > 1 )tracking = typingSpeed(totalSpeed, keyCount);
-			else tracking = 0;
-			console.log("pause color: " + color);
+			else tracking = 0; 
+			if(words.length == 1) tracking = 0;	 //temporary fix for the first word
+		
 
 			lastWord = words[words.length-1];
 			values.push({word: lastWord, spacing: spacing, size: fontSize, tracking: tracking, color: color });
@@ -86,7 +86,7 @@ function DBL(){
 		// T R A C K I N G   A N D   P A U S E   C O L O R
 		else{
 			if(event.key != 'Backspace' && inputText.length > 1){
-				console.log("tracking record");
+				console.log("record is on");
 
 				totalSpeed += timeData;
 				keyCount++;
@@ -97,13 +97,12 @@ function DBL(){
 				 }
 			}
 		}
+
 	
 		// D E L E T E    W O R D S   F R O M    A R R A Y - if words have been deleted, remove from array. 
 		while(values.length > words.length) values.splice(values.length-1, 1);
 		var currentWord = values[values.length-1].word;
 		if(lastWord != currentWord) values[values.length-1].word = lastWord; 
-
-
 
 
 		// F I X   D E L E T E   W O R D   B U G - When lastword is not " " after deleting, wrong word is enlarged	 
@@ -122,7 +121,6 @@ function DBL(){
 			
 
 		// A P P L Y I N G   S T Y L E 
-
 		$("#outputText").empty();
  			jQuery.each(values, function(i, v) { 	
 
@@ -142,19 +140,10 @@ function DBL(){
 				";\">";
 			//	console.log(newStyle + w + " " + "</span>");	
 				$("#outputText").append( $(newStyle + w + " " + "</span>"));
-			});
-
- 		/* 	var newStyle = "<span " + 
-				"style=\"color:" + newCol +
-				";word-spacing:" + spacing_ +"px" + 
-				";font-size:" + size + "px" +
-				";letter-spacing:" + tracking_ + "px" +
-				";\">";
-		*/ 
-
+			})
  
 
-
+ 		// update 
 		lastJumpWord = jumpWord;
 		previousKey = event.key; 
  		lastWordLength = words.length; 

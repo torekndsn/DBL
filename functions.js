@@ -13,12 +13,12 @@
 			var trackingValue;
 			console.log("avrSpeed: " + avrSpeed_);
 			//var tracking = map_range(avrSpeed, )
-			if(avrSpeed_ > 180 ){
-				trackingValue = map_range(avrSpeed_, 180, 320, 0, 7);
+			if(avrSpeed_ > 170 ){
+				trackingValue = map_range(avrSpeed_, 170, 300, 0, 7);
 				trackingValue = constrain_value(trackingValue, 0, 7);
 			 }
-			 else if(avrSpeed_ < 150){
-			 	trackingValue = map_range(avrSpeed_, 60, 150, -3, 0);
+			 else if(avrSpeed_ < 160){
+			 	trackingValue = map_range(avrSpeed_, 60, 160, -3, 0);
 				trackingValue = constrain_value(trackingValue, -3, 0);
 			 }
 			 else trackingValue = 0;
@@ -53,8 +53,8 @@
 			var interval = timeData;
 			if(interval > 1000) {
 					console.log("interval: " + interval);
-				var spacing = map_range(interval, 1000,3000,5,50);
-				spacing = constrain_value(spacing,0,50);
+				var spacing = map_range(interval, 1000,3000,0,70);
+				spacing = constrain_value(spacing,0,70);
 				return spacing;
 			} else return 0; 		
 		}
