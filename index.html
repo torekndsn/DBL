@@ -19,29 +19,31 @@
 		<div class ="boxcontainer">
 			<h2>input text </h2>
 			<textarea id="inputText" class="textBox" contenteditable="true"></textarea>
-			<button id="render">send</button>
+			<button id="render">render</button>
 		</div>
 		<div class ="boxcontainer">	
 			<h2>output text</h2>
 			<div id="outputText" class="textBox"> </div> 
-			<button id="pdf-btn" onclick="return xepOnline.Formatter.Format('outputText');" > Print PDF </button>
+			<button id="pdf-btn" onclick="return xepOnline.Formatter.Format('outputText');" > print PDF </button>
 		</div>
 	</div>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="http://api.jquery.com/resources/events.js"></script>
 <script type="text/javascript" src="functions.js"></script>
-<script type="text/javascript" src="DBL.js"></script>
 <script type="text/javascript" src="domfunctions.js"></script>
+<script type="text/javascript" src="DBL.js"></script>
 <script src="xepOnline.jqPlugin.js"></script>
 <script type="text/javascript">
 
 	courserFix();
-
+	var values = []; // make values global 
 	$(document).ready(function(){
 		$('body').removeClass('fade-out');
+
 		noKeyNav();
 		DBL();
+
 		})
 </script>
 </body>
