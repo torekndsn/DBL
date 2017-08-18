@@ -1,7 +1,7 @@
 
 
 function DBL(){
-	// i made a NEW change!! 
+	// Font color
 	//Variables 
 
 	var values = [];
@@ -15,17 +15,22 @@ function DBL(){
 	var previousKey;
 
 	var lastWord = "";
-	var lastWordMeta = "";
 	var fontSize; 
+
+	var totalSpeed = 0;
+	var keyCount = 0; 
+	var topTime = 0; 
 
 
 	var deletedWordsCount = 0; 
 	var spacing;
+	var tracking = 0; 
+	var color = 90;
 	var jumpWord = false; 
 	var lastJumpWord; 
 
 
-///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
+	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
 	$("#inputText").keydown(function( event ){
 		console.clear(); 
 	 	currentMillis = event.timeStamp;
@@ -39,13 +44,7 @@ function DBL(){
 		//if something has been typed, record keystroke timestamps.
 		if(inputText.length > 0) timeData = currentMillis - lastKeyHit;
 		
-		// S T A R T  R E C O R D - if text has expanded, a new word is written.
-		if(words.length > lastWordLength || previousKey == " "){
-
-		}
-
-
-
+	
 
 		// S P A C I N G // - if break between words, get time interval to spacing
 		if(previousKey == " " || event.key == " "){
@@ -60,26 +59,50 @@ function DBL(){
 		if( words.length < lastWordLength) deletedWordsCount++; 
 
 
+
 	
 		// E N D   R E C O R D - if space is hit, a word is done. 
 		if(event.key == " " && words.length > 0){
+			console.log("record is off");
 
 			if(!jumpWord) fontSize = word_size(deletedWordsCount);
 
+		 	if(keyCount > 1 )tracking = typingSpeed(totalSpeed, keyCount);
+			else tracking = 0; 
+			if(words.length == 1) tracking = 0;	 //temporary fix for the first word
+		
+
 			lastWord = words[words.length-1];
-			values.push({word: lastWord, spacing: spacing, size: fontSize });
+			values.push({word: lastWord, spacing: spacing, size: fontSize, tracking: tracking, color: color });
 
 			//reset 
 			deletedWordsCount = 0;
 			jumpWord = false; 
+			totalSpeed = 0;
+			keyCount = 0; 
+			topTime = 0;
 		}
+
+		// T R A C K I N G   A N D   P A U S E   C O L O R
+		else{
+			if(event.key != 'Backspace' && inputText.length > 1){
+				console.log("record is on");
+
+				totalSpeed += timeData;
+				keyCount++;
+
+				if(timeData > topTime){
+					 topTime = timeData;
+				     color = pauseColor(topTime);
+				 }
+			}
+		}
+
 	
 		// D E L E T E    W O R D S   F R O M    A R R A Y - if words have been deleted, remove from array. 
 		while(values.length > words.length) values.splice(values.length-1, 1);
 		var currentWord = values[values.length-1].word;
 		if(lastWord != currentWord) values[values.length-1].word = lastWord; 
-
-
 
 
 		// F I X   D E L E T E   W O R D   B U G - When lastword is not " " after deleting, wrong word is enlarged	 
@@ -91,51 +114,36 @@ function DBL(){
 			values[values.length-1].size = fontSize;
 		}
 		if(jumpWord == false && lastJumpWord == true){
-			console.log("font size: " + fontSize);
 			values[values.length-1].size = fontSize;		
 		}
 		if(jumpWord) values[values.length-1].size = 16;
 
 			
 
-		console.log("jumpWord: " + jumpWord);
-		console.log("lastJumpWord: " + lastJumpWord);
-		//console.log("words: " + words);
-		//console.log("last word meta: " + lastWordMeta);
-		//console.log("previous key: " + previousKey);
-		//console.log("last word length: " + lastWordLength);
-		//console.log("sizing: " + values[values.length-1].size);
-
-
-
 		// A P P L Y I N G   S T Y L E 
-
 		$("#outputText").empty();
  			jQuery.each(values, function(i, v) { 	
 
 			 	var w = values[i].word;
 			 	var spacing_ = values[i].spacing;
 			 	var size_ = values[i].size;
+			 	var tracking_ = values[i].tracking;
+
+			 	var col_ = values[i].color;
+			 	var newCol = "rgb(" + col_ + "," + col_ + "," + col_ + ")";
 	
 			 	var newStyle = "<span " + 
 				"style=\"padding-right:" + spacing_ +"px" + 
-				";font-size:" + size_ + "px" +
+				";font-size:" + size_ + "px" + 
+				";letter-spacing:" + tracking_ + "px" +
+				";color:" + newCol +
 				";\">";
 			//	console.log(newStyle + w + " " + "</span>");	
 				$("#outputText").append( $(newStyle + w + " " + "</span>"));
-			});
-
- 		/* 	var newStyle = "<span " + 
-				"style=\"color:" + newCol +
-				";word-spacing:" + spacing_ +"px" + 
-				";font-size:" + size + "px" +
-				";letter-spacing:" + tracking_ + "px" +
-				";\">";
-		*/ 
-
+			})
  
 
-
+ 		// update 
 		lastJumpWord = jumpWord;
 		previousKey = event.key; 
  		lastWordLength = words.length; 

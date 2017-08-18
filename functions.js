@@ -1,15 +1,46 @@
 
-			  var minTimeTempo = 80;      // MINIMUM interval to consider, this should be good. 
-			  var maxTimeTempo = 350;   // Maximum interval to consider, much delay than 250 will become more as a pause i guess. 
-			  var avrTimeTempo = 185; // The avarage texting time for a person.		  
-			  var minValTempo = -2; // the amount of visual impact in the narrowing the kerning of a sentence.
-			  var maxValTempo = 15; // the amount of visual impact in increasing the kerning of a sentence.
-			  var minTimeSpace = 500;
-
-			  var maxTimeSpace = 3000
+		
+	 	var avrTimeTempo = 185; // The avarage texting time for a person.		  
 
 
 
+		/////////////////////////////////////////////////
+		//------------- T R A C K I N G ---------------//
+		/////////////////////////////////////////////////
+
+		function typingSpeed(totalSpeed_, keyCount_){
+			var avrSpeed_ = totalSpeed_ / keyCount_;
+			var trackingValue;
+			console.log("avrSpeed: " + avrSpeed_);
+			//var tracking = map_range(avrSpeed, )
+			if(avrSpeed_ > 170 ){
+				trackingValue = map_range(avrSpeed_, 170, 300, 0, 7);
+				trackingValue = constrain_value(trackingValue, 0, 7);
+			 }
+			 else if(avrSpeed_ < 160){
+			 	trackingValue = map_range(avrSpeed_, 60, 160, -3, 0);
+				trackingValue = constrain_value(trackingValue, -3, 0);
+			 }
+			 else trackingValue = 0;
+
+			 console.log("tracking value: " + trackingValue);
+			 return trackingValue;
+			}
+
+
+
+
+		/////////////////////////////////////////////////
+		//----------------- C O L O R -----------------//
+		/////////////////////////////////////////////////
+		function pauseColor(topTime){
+			if(topTime > 1000){
+				var tracking = map_range(topTime, 700, 2500, 90, 0);
+				tracking = constrain_value(tracking, 0, 90);
+				return tracking;
+			}
+			else return 90;
+		}
 
 
 
@@ -22,8 +53,8 @@
 			var interval = timeData;
 			if(interval > 1000) {
 					console.log("interval: " + interval);
-				var spacing = map_range(interval, 500,3000,5,50);
-				spacing = constrain_value(spacing,0,50);
+				var spacing = map_range(interval, 1000,3000,0,70);
+				spacing = constrain_value(spacing,0,70);
 				return spacing;
 			} else return 0; 		
 		}
