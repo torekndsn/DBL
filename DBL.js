@@ -118,9 +118,9 @@ function DBL(){
 		}
 		if(jumpWord) values[values.length-1].size = 16;
 
-			
-
 		// A P P L Y I N G   S T Y L E 
+
+		function renderText(){
 		$("#outputText").empty();
  			jQuery.each(values, function(i, v) { 	
 
@@ -141,7 +141,12 @@ function DBL(){
 			//	console.log(newStyle + w + " " + "</span>");	
 				$("#outputText").append( $(newStyle + w + " " + "</span>"));
 			})
- 
+ 		}
+
+ 		$('#render').click(function(){
+     	  renderText();
+   		 });
+ 	
 
  		// update 
 		lastJumpWord = jumpWord;

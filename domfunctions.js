@@ -24,3 +24,4 @@ function courserFix(){
 	textarea.addEventListener('keydown', reset, false);
 
 }
+
