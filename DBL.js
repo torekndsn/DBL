@@ -30,6 +30,9 @@ function DBL(){
 	var jumpWord = false; 
 	var lastJumpWord; 
 
+	var dec = 2; 
+	var lineShift = false;
+
 
 	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
 	$("#inputText").keydown(function( event ){
@@ -59,7 +62,10 @@ function DBL(){
 		// D E L E T I N G   R U L E // - if words are delted, it chould affect font-size of next word
 		if( words.length < lastWordLength) deletedWordsCount++; 
 
-
+		/* if(event.key == 'Enter') lineShift = true;
+		else lineShift = false;
+		console.log("lineshift: " + lineShift);
+		*/ 
 
 	
 		// E N D   R E C O R D - if space is hit, a word is done. 
@@ -74,8 +80,9 @@ function DBL(){
 		
 
 			lastWord = words[words.length-1];
-			values.push({word: lastWord, spacing: spacing, size: fontSize, tracking: tracking, color: color });
-
+			//if(lineShift) lastWord = lastWord + "\n"; 
+			values.push({word: String(lastWord), spacing: +spacing.toFixed(dec), size: +fontSize.toFixed(0), tracking: +tracking.toFixed(dec), color: +color.toFixed(0) });
+			//+discount.toFixed(2)
 			//reset 
 			deletedWordsCount = 0;
 			jumpWord = false; 

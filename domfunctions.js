@@ -94,6 +94,7 @@
 	function CSV(array) {
 	    // Use first element to choose the keys and the order
 	    var keys = Object.keys(array[0]);
+	    console.log("keys: " + keys);
 
 	    // Build header
 	    var result = keys.join(",") + "\n";
@@ -101,7 +102,15 @@
 	    // Add the rows
 	    array.forEach(function(obj){
 	        keys.forEach(function(k, ix){
+	        	
+	        	if(typeof obj[k] === 'string'){
+	        	    if(obj[k].includes("\"") || obj[k].includes("\"")) obj[k] = "'" + obj[k] + "'";
+	        		if(obj[k].includes("\n")) obj[k] = "'" + obj[k] + "'";
+	        		if(obj[k].includes(",")) obj[k] = "\"" + obj[k] + "\"";			//		"\"http://example.com\""
+	        		console.log(obj[k]);
+	        		}
 	            if (ix) result += ",";
+	            
 	            result += obj[k];
 	        });
 	        result += "\n";
