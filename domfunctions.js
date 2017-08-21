@@ -10,9 +10,6 @@ function noKeyNav(){
 }
 
 
-
-
-
 function courserFix(){
 	var textarea = document.querySelector('#inputText');
 
@@ -29,7 +26,15 @@ function courserFix(){
 }
 
 	// A P P L Y I N G   S T Y L E 
-	function renderText(){
+	function renderText(lastword, prevKey){
+
+		if(prevKey != " "){
+			var lastword_ = lastword + prevKey;
+			console.log("lastword: " + lastword_);
+	 		console.log("last array word: " + values[values.length-1].word); 
+	 		values.push({word: lastword_, spacing: 0, size: 16, tracking: 0, color: 90 });
+	 	}
+	
 		$("#outputText").empty();
  			jQuery.each(values, function(i, v) { 	
 
@@ -55,18 +60,10 @@ function courserFix(){
 		$("#render").off('click').on('click', reset);
  	}
 
- 	//	$('#render').on('click', renderText())
-		/* 	function renderTextTest() {
-				renderText();
-			    $('#render').text("reset");
-			    $("#render").off('click').on('click', reset)
-			}
 
-			*/ 
-
-			function reset() {  	
-				location.reload();
-			} 
+	function reset() {  	
+		location.reload();
+	} 
 
 
 			

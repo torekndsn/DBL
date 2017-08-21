@@ -24,7 +24,7 @@ font-size: 1.3em;
 
 h2{
 	font-size: 1.1em;
-	color: #5F6C72;
+	color: #5A5A5A;
 	font-weight: 300;
 }
 
@@ -37,7 +37,7 @@ h2{
 }
 
 .content .intro p{
-	color: #5F6C72;
+	color: #5A5A5A;
 	max-width: 750px;
 	line-height: 1.3em;
 
@@ -65,8 +65,9 @@ h2{
 	border: none;
 	width:92%;
 
-	font-size: 1em;
+	font-size: 16px;
 	font-family: 'Inconsolata', monospace;
+	color: #5A5A5A;
 
 	background-color: #F2F2F2;
 }

@@ -13,6 +13,7 @@ function DBL(){
 	var lastKeyHit = 0;
 	var lastWordLength = 0;
 	var previousKey;
+	var inputText; 
 
 	var lastWord = "";
 	var fontSize; 
@@ -35,7 +36,7 @@ function DBL(){
 		console.clear(); 
 	 	currentMillis = event.timeStamp;
 		// get input text and get every word into array. 
-		var inputText = this.value;
+		inputText = this.value;
 		words = inputText.split(" ");
 
 		//reset time if nothing has been typed
@@ -118,22 +119,16 @@ function DBL(){
 		}
 		if(jumpWord) values[values.length-1].size = 16;
 
-	
-
- 	 	
-	 
-
- 		
 
  		// update 
 		lastJumpWord = jumpWord;
 		previousKey = event.key; 
  		lastWordLength = words.length; 
  		lastKeyHit = event.timeStamp;
-
 	})
 
-	$('#render').click(function(){
-     	  renderText();
+	$('#render').click(function(){ 
+		words = inputText.split(" ");
+     	renderText(words[words.length-1], previousKey);
    		 });
 }
