@@ -90,4 +90,12 @@ h2{
 	pointer-events: none;
 }
 
+#export-btn{
+	margin-left: 12px;
+}
+
 .boxcontainer button:hover {background-color: #4C80FF;}
+
+.hide{
+	visibility: hidden;
+}

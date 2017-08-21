@@ -1,31 +1,41 @@
-	
+		
 
 
-function noKeyNav(){
-	window.addEventListener("keydown", function(e) {
-    if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
-    }
-	}, false);
-}
 
+	////////////////////////////////////////////////////////////////////////////////////
+	//------------- P R E V E N T   T E X T B O X   N A V I GA T I O N ---------------//
+	///////////////////////////////////////////////////////////////////////////////////
 
-function courserFix(){
-	var textarea = document.querySelector('#inputText');
-
-	var reset = function (e) {
-   	  var len = this.value.length;
-   	 this.setSelectionRange(len, len);
+	function noKeyNav(){
+		window.addEventListener("keydown", function(e) {
+	    if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+	        e.preventDefault();
+	    }
+		}, false);
 	}
 
-	textarea.addEventListener('focus', reset, false);
-	textarea.addEventListener('mouseup', reset, false);
-	textarea.addEventListener('keyup', reset, false);
-	textarea.addEventListener('keydown', reset, false);
 
-}
+	function courserFix(){
+		var textarea = document.querySelector('#inputText');
 
-	// A P P L Y I N G   S T Y L E 
+		var reset = function (e) {
+	   	  var len = this.value.length;
+	   	 this.setSelectionRange(len, len);
+		}
+
+		textarea.addEventListener('focus', reset, false);
+		textarea.addEventListener('mouseup', reset, false);
+		textarea.addEventListener('keyup', reset, false);
+		textarea.addEventListener('keydown', reset, false);
+
+	}
+
+
+	///////////////////////////////////////////////////////////////////////////////
+	//------------- A P P L Y I N G   S T Y L E S   T O   T E X T ---------------//
+	///////////////////////////////////////////////////////////////////////////////
+
+	
 	function renderText(lastword, prevKey){
 
 		if(prevKey != " "){
@@ -56,6 +66,15 @@ function courserFix(){
 			$("#outputText").append( $(newStyle + w + " " + "</span>"));
 		})
 
+ 		 // make ready for csv export
+ 		 csvFile = CSV(values);	
+ 		 console.log("CSV FILE: " + csvFile);
+ 		 var a = document.getElementById("a");
+    	 a.href = "data:text/csv;base64," + btoa(csvFile);
+
+ 		
+ 		$('#export-btn').removeClass('hide');
+ 		$('#pdf-btn').removeClass('hide');
  		$('#render').text("reset");
 		$("#render").off('click').on('click', reset);
  	}
@@ -66,5 +85,29 @@ function courserFix(){
 	} 
 
 
-			
+
+	//////////////////////////////////////////////////////////////////////////////
+	//------------- S A V E   A N D   E X P O R T   A S   .C S V ---------------//
+	//////////////////////////////////////////////////////////////////////////////
+	// Returns a csv from an array of objects with
+	// values separated by tabs and rows separated by newlines
+	function CSV(array) {
+	    // Use first element to choose the keys and the order
+	    var keys = Object.keys(array[0]);
+
+	    // Build header
+	    var result = keys.join(",") + "\n";
+
+	    // Add the rows
+	    array.forEach(function(obj){
+	        keys.forEach(function(k, ix){
+	            if (ix) result += ",";
+	            result += obj[k];
+	        });
+	        result += "\n";
+	    });
+
+	    return result;
+	}
+				
 

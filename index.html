@@ -24,9 +24,14 @@
 		<div class ="boxcontainer">	
 			<h2>output text</h2>
 			<div id="outputText" class="textBox"> </div> 
-			<button id="pdf-btn" onclick="return xepOnline.Formatter.Format('outputText');"> print PDF </button>
+			<button id="pdf-btn" class="hide" onclick="return xepOnline.Formatter.Format('outputText');">print PDF</button>
+			<a id ="a" target="_blank"> 
+				 <button id="export-btn" class="hide">export csv</button>
+			</a>
 		</div>
 	</div>
+
+
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="http://api.jquery.com/resources/events.js"></script>
@@ -37,6 +42,7 @@
 <script type="text/javascript">
 
 	courserFix();
+	var csvFile; 
 	var values = []; // make values global 
 	$(document).ready(function(){
 		$('body').removeClass('fade-out');
