@@ -1,0 +1,24 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "Implementing DBL as a chat",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torekndsn/DBL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/torekndsn/DBL/issues"
+  },
+  "homepage": "https://github.com/torekndsn/DBL#readme",
+  "dependencies": {
+    "connect": "^3.6.3",
+    "express": "^4.15.4",
+    "socket.io": "^2.0.3"
+  }
+}
