@@ -29,22 +29,28 @@
 				 <button id="export-btn" class="hide">export csv</button>
 			</a>
 		</div>
+
+		
+		<div class ="chatcontainer">
+			<h1>Chat Box</h1>
+			<div class="chatbox">
+			</div> 
+		</div>
 	</div>
 
-
+<script type="text/javascript" src="js/domfunctions.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="http://api.jquery.com/resources/events.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
-<script type="text/javascript" src="js/domfunctions.js"></script>
 <script type="text/javascript" src="js/DBL.js"></script>
 <script src="js/xepOnline.jqPlugin.js"></script>
 <script type="text/javascript">
 
 	var socket;
 	socket = io.connect('http://localhost:3000');
+	socket.on('messeage', newMsg);
 
-	
 	courserFix();
 	var csvFile; 
 	var values = []; // make values global 

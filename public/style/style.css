@@ -31,6 +31,13 @@ h2{
 
 
 
+
+
+
+
+
+
+
 .content{
 	margin: 70px 20px 20px 20px;
 	height:100%;
@@ -51,13 +58,21 @@ h2{
   	 float: left; 	  	 
 }
 
+.content .chatcontainer{
+	 margin-top: 40px;
+	 display: inline-block;
+  	 width: 98%;
+  	 height:auto;
+  	 float: left; 
+}
+
+
 .content .boxcontainer:nth-child(2){
 	margin-right: 2%
 }
 
-.boxcontainer .textBox{
-
-	height: 300px;
+.textBox{
+	height: 200px;
 	max-width: 100%;
 	display: block; 
 	padding:20px;
@@ -70,6 +85,11 @@ h2{
 	color: #5A5A5A;
 
 	background-color: #F2F2F2;
+}
+
+.content .chatcontainer .textBox{
+	width: 100%;
+
 }
 
 
@@ -99,3 +119,91 @@ h2{
 .hide{
 	visibility: hidden;
 }
+
+
+
+
+.chatcontainer .chatbox{
+	height: 100px;
+	display: block; 
+	resize: none;
+	width:100%;
+
+	font-size: 16px;
+	font-family: 'Inconsolata', monospace;
+	color: #5A5A5A;
+}
+
+.chatcontainer .chatbox .chat-object{
+	height: auto;
+	max-width: 100%;
+	display: block; 
+	resize: none;
+	border: none;
+	width:100%;
+}
+
+
+
+
+
+.chatcontainer .chatbox .chat-object .left{
+	height: 50%;
+	max-width: 50%;
+	display: block; 
+	width:50%;
+	float:left;
+	clear:right;
+	margin-bottom: 20px;
+}
+
+.chatcontainer .chatbox .chat-object .right{
+
+	height: 50%;
+	max-width: 50%;
+	display: block; 
+	width:50%;
+	float:right;
+	clear:left;
+	margin-bottom: 20px;
+
+}
+
+
+
+.chatcontainer .chatbox .chat-object .left .msg{
+
+	height: 100%;
+	max-width: 100%;
+	display: block; 
+	width:100%;
+	padding:20px;
+
+	font-size: 16px;
+	font-family: 'Inconsolata', monospace;
+	color: #5A5A5A;
+	background-color: #F2F2F2;
+}
+
+.chatcontainer .chatbox .chat-object .right .msg{
+
+	height: 100%;
+	max-width: 100%;
+	display: block; 
+	width:100%;
+	padding:20px;
+	
+
+	font-size: 16px;
+	font-family: 'Inconsolata', monospace;
+	color: #5A5A5A;
+	background-color: #F2F2F2;
+}
+
+#first{
+	margin-top: 40px;
+}
+
+
+
+ 

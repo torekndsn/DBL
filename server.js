@@ -21,10 +21,10 @@ io.sockets.on('connection', newConnection);
 
 function newConnection(socket) {
 	console.log("New connection: " + socket.id);
-
 	socket.on('messeage', inMsg);
 
-	function inMsg(data){
+	 function inMsg(data){
+		socket.broadcast.emit('messeage', data);
 		console.log(data);
-	}
+	} 
 }
