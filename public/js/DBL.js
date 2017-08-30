@@ -16,7 +16,7 @@ function DBL(){
 	var inputText; 
 
 	var lastWord = "";
-	var fontSize; 
+	var fontSize = 16; 
 
 	var totalSpeed = 0;
 	var keyCount = 0; 
@@ -41,6 +41,8 @@ function DBL(){
 		// get input text and get every word into array. 
 		inputText = this.value;
 		words = inputText.split(" ");
+		console.log("words length: " + words.length);
+		console.log("values length " + values.length);
 
 		//reset time if nothing has been typed
 		if(inputText.length <=  0) lastKeyHit = currentMillis;
@@ -53,14 +55,14 @@ function DBL(){
 		// S P A C I N G // - if break between words, get time interval to spacing
 		if(previousKey == " " || event.key == " "){
 			spacing = word_spacing(timeData);
-			if(previousKey == " " && values[values.length-1].spacing == 0){
+			if( words.length > 1 && previousKey == " " && values[values.length-1].spacing == 0){
 				values[values.length-1].spacing = spacing;
 			}
 		}
 		else spacing = 0; 
 
 		// D E L E T I N G   R U L E // - if words are delted, it chould affect font-size of next word
-		if( words.length < lastWordLength) deletedWordsCount++; 
+		if( event.key == 'Backspace' && words.length < lastWordLength) deletedWordsCount++; 
 
 		/* if(event.key == 'Enter') lineShift = true;
 		else lineShift = false;
@@ -70,7 +72,7 @@ function DBL(){
 	
 		// E N D   R E C O R D - if space is hit, a word is done. 
 		if(event.key == " " && words.length > 0){
-			console.log("record is off");
+			//console.log("record is off");
 
 			if(!jumpWord) fontSize = word_size(deletedWordsCount);
 
@@ -82,19 +84,19 @@ function DBL(){
 			lastWord = words[words.length-1];
 			//if(lineShift) lastWord = lastWord + "\n"; 
 			values.push({word: String(lastWord), spacing: +spacing.toFixed(dec), size: +fontSize.toFixed(0), tracking: +tracking.toFixed(dec), color: +color.toFixed(0) });
-			//+discount.toFixed(2)
 			//reset 
 			deletedWordsCount = 0;
 			jumpWord = false; 
 			totalSpeed = 0;
 			keyCount = 0; 
 			topTime = 0;
+			//fontSize = 16;
 		}
 
 		// T R A C K I N G   A N D   P A U S E   C O L O R
 		else{
 			if(event.key != 'Backspace' && inputText.length > 1){
-				console.log("record is on");
+				//console.log("record is on");
 
 				totalSpeed += timeData;
 				keyCount++;
@@ -117,25 +119,50 @@ function DBL(){
 		if(event.key == " " && lastWordLength > words.length ){
 			jumpWord = true;
 		}
-		 else{
+
+		else{
 		 	if(values[values.length-1].size <= 16)
 			values[values.length-1].size = fontSize;
 		}
+
 		if(jumpWord == false && lastJumpWord == true){
 			values[values.length-1].size = fontSize;		
 		}
-		if(jumpWord) values[values.length-1].size = 16;
 
+		if(jumpWord) values[values.length-1].size = 16;
 
  		// update 
 		lastJumpWord = jumpWord;
 		previousKey = event.key; 
  		lastWordLength = words.length; 
  		lastKeyHit = event.timeStamp;
+ 		console.log("size: " + values[values.length-1].size);
+ 		console.log("jumpWord setting: " + jumpWord);
 	})
 
 	$('#render').click(function(){ 
 		words = inputText.split(" ");
      	renderText(words[words.length-1], previousKey);
    		 });
+
+	$('#send').click(function(){
+		words = inputText.split(" ");
+		renderChat(words[words.length-1], previousKey, values);
+
+			$('.textBox').val('');
+			deletedWordsCount = 0;
+			jumpWord = false; 
+			totalSpeed = 0;
+			keyCount = 0; 
+			topTime = 0;
+			//fontSize = 16;
+
+			deletedWordsCount = 0;
+			jumpWord = false; 
+			totalSpeed = 0;
+			keyCount = 0; 
+			topTime = 0;
+			values = [];
+	});
+	
 }

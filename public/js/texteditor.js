@@ -1,36 +1,5 @@
 		
 
-
-
-	////////////////////////////////////////////////////////////////////////////////////
-	//------------- P R E V E N T   T E X T B O X   N A V I GA T I O N ---------------//
-	///////////////////////////////////////////////////////////////////////////////////
-
-	function noKeyNav(){
-		window.addEventListener("keydown", function(e) {
-	    if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-	        e.preventDefault();
-	    }
-		}, false);
-	}
-
-
-	function courserFix(){
-		var textarea = document.querySelector('#inputText');
-
-		var reset = function (e) {
-	   	  var len = this.value.length;
-	   	 this.setSelectionRange(len, len);
-		}
-
-		textarea.addEventListener('focus', reset, false);
-		textarea.addEventListener('mouseup', reset, false);
-		textarea.addEventListener('keyup', reset, false);
-		textarea.addEventListener('keydown', reset, false);
-
-	}
-
-
 	///////////////////////////////////////////////////////////////////////////////
 	//------------- A P P L Y I N G   S T Y L E S   T O   T E X T ---------------//
 	///////////////////////////////////////////////////////////////////////////////
@@ -62,16 +31,6 @@
 			//	console.log(newStyle + w + " " + "</span>");	
 			$("#outputText").append( $(newStyle + w + " " + "</span>"));
 		})
-	
- 		var msg = $('#outputText').html();
-
- 		//place own msg into chat
- 		newMsgIntern(msg);
-
- 		//send outputText to server	
- 		socket.emit('messeage', msg);
- 		console.log("msg: " + msg);
-
 
 
  		 // make ready for csv export
@@ -91,44 +50,6 @@
 	function reset() {  	
 		location.reload();
 	}
-
-
-	////////////////////////////////////////////////////////////////////////////////////////
-	//------------- C R E A T E   T E X T  B O X   F O R   C H A T   M S G ---------------//
-	////////////////////////////////////////////////////////////////////////////////////////
-
-
-	// I N C O M I N G   M S G   U P D A T E 
-	function newMsg(data){
-		console.log("received: " + data);
-	
-		var div ='<div class= "chat-object">' +
-					'<div class="right">' +
-						'<h2> person </h2>' +
-						' <div class= "msg" >' + data + '</div>' +
-					'</div>' +
-				'</div>';
-	 	$(div).appendTo('.chatbox');
-	  
-	}
-
-
-	// I N T E R N   M S G   U P D A T E 
-	function newMsgIntern (myMsg){
-		console.log("received: " + myMsg);
-		//$("#newMessageField").append(data);
-		var div ='<div class="chat-object">' +
-					'<div class="left">' +
-						'<h2> me </h2>' +
-						' <div class= "msg" >' + myMsg + '</div>' +
-					'</div>' +
-				'</div>';
-		$(div).appendTo('.chatbox');
-	}
-
-
-
-
 
 
 	//////////////////////////////////////////////////////////////////////////////

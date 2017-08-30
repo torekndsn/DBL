@@ -1,0 +1,223 @@
+html{
+	font-size: 16px;
+	font-family: 'Inconsolata', monospace;
+	height: 100%;
+	max-height: 100%;
+}
+
+body{
+	 margin:auto;
+	 max-width: 960px;
+	 min-width: 200px;
+	 height: 100%;
+	 max-height: 100%;
+
+	 opacity: 1;
+     transition: 1s opacity;
+}
+
+body.fade-out {
+    opacity: 0;
+    transition: none;
+}
+
+h1{
+font-size: 1.3em;
+}
+
+h2{
+	font-size: 1.1em;
+	color: #5A5A5A;
+	font-weight: 300;
+}
+
+h3{
+	font-size: 0.8em;
+	margin: 0px;
+	font-weight: 200;
+	margin-bottom: 4px;
+	color: #b3b3b3;
+}
+
+
+
+
+
+
+
+
+
+
+.menu-div{
+	margin: 20px auto auto auto;
+	height:80px;
+	max-width: 100%;
+}
+
+.menu-div h1{
+	float: left;
+	display: inline;
+}
+.menu-div ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.menu-div ul li{
+	float: right;
+}
+
+.menu-div ul li a{
+	display: block;
+	color: #5A5A5A;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.menu-div ul li a:hover{
+	color: #5B8AFD;
+
+}
+
+.menu-div .active{
+    color: #5B8AFD;
+}
+
+
+
+
+
+
+
+.content{
+	margin: auto;
+	height: 100%;
+	max-height: 100%;
+	max-width: 750px;
+}
+
+.content .chatcontainer{
+	
+	 margin: auto;
+	 display: inline-block;
+  	 width: 100%;
+  	 height:auto;
+  	 float: left; 
+  	 margin-bottom: 20px;
+  	 border-top: 1px 
+}
+
+.content .chatcontainer .chatbox{
+  	 width: 100%;
+  	 height:320px;
+  	 float: left; 
+  	 display: table;
+
+  	border-top: 1px;
+    border-top-color: #b3b3b3;
+    border-top-style: solid;
+    overflow: hidden;
+}
+
+.chatcontainer .chatbox .chat-object{
+	height: auto;
+	max-width: 100%;
+    display: inline-block;
+	resize: none;
+	border: none;
+	width:100%;
+	margin-top: 12px;
+}
+
+.chatcontainer .chatbox .chat-object .left{
+	height: 50%;
+	max-width: 60%;
+	display: block; 
+	width:60%;
+	float:left;
+	clear:right;
+}
+
+.chatcontainer .chatbox .chat-object .right{
+
+	height: 50%;
+	max-width: 60%;
+	display: block; 
+	width:60%;
+	float:right;
+	clear:left;
+}
+.chatcontainer .chatbox .msgWrapper{
+	 display: table-cell;
+    vertical-align: bottom;
+    padding: 5px;
+
+}
+
+
+.chatcontainer .chatbox .chat-object .msg{
+
+	height: 100%;
+	max-width: 100%;
+	display: block; 
+	width:100%;
+	padding:12px 0px 12px 12px;
+	
+
+	font-size: 16px;
+	font-family: 'Inconsolata', monospace;
+	color: #5A5A5A;
+	background-color: #F2F2F2;
+}
+
+
+
+
+
+
+
+
+
+.boxcontainer{
+	 margin: auto;
+	 display: inline-block;
+  	 width: 100%;
+  	 height:auto;
+  	 float: left; 
+}
+
+.content .boxcontainer .textBox{
+
+	height: 80px;
+	max-width: 100%;
+	display: block; 
+	resize: none;
+	border: none;
+	width:90%;
+	padding:5%;
+	font-size: 16px;
+	font-family: 'Inconsolata', monospace;
+	color: #5A5A5A;
+
+	background-color: #F2F2F2;
+}
+
+.boxcontainer button{
+	margin-top: 24px;
+	font-family: 'Inconsolata', monospace;
+	background-color: #5B8AFD; /* hover: 4C80FF; */ 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+
+
