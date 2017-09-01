@@ -32,6 +32,8 @@ function renderChat(lastword, prevKey, dataArr){
  		newMsgIntern(msg);
  		//send outputText to server	
  		socket.emit('messeage', msg);
+ 		console.log("length of divs: " + $(".msgWrapper > div").length); 
+ 		if( $(".msgWrapper > div").length > 4 ) $('.msgWrapper').find('div').first().remove();
  	//	console.log("msg: " + msg);
  		//$('#render').text("reset");
 		//$("#render").off('click').on('click', reset);
