@@ -45,8 +45,8 @@
 <script id="DBL" type="text/javascript" src="js/DBL.js"></script>
 <script type="text/javascript">
 
-	var socket;
-	socket = io.connect('http://localhost:3000');
+	var socket = io();
+	//socket = io.connect('http://localhost:3000');
 	socket.on('messeage', newMsg);
 
 	courserFix();
