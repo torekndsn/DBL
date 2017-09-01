@@ -13,7 +13,7 @@ console.log("My socket server is running");
 
 //web socket
 
-io.sockets.on('connection', (socket) => {
+io.on('connection', (socket) => {
 	console.log("New connection: " + socket.id);
 	socket.on('messeage', inMsg);
 
