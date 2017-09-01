@@ -1,19 +1,22 @@
+'use strict';
 
-var express = require('express');
-var socketIO = require('socket.io');
-var PORT = process.env.PORT || 3000;
+const express = require('express');
+const socketIO = require('socket.io');
+const path = require('path');
+
+const PORT = process.env.PORT || 3000;
+const INDEX = path.join(__dirname, 'public/index.html');
 
 const server = express()
-	.use(express.static('public'))
-	.listen(PORT, () => console.log('Listening on ' + PORT));
+  .use(express.static('public'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const io = socketIO(server);
-console.log("My socket server is running");
-
-
-//web socket
 
 io.on('connection', (socket) => {
+	console.log('Client connected');
+	socket.on('disconnect', () => console.log('Client disconnected'));
+
 	console.log("New connection: " + socket.id);
 	socket.on('messeage', inMsg);
 
@@ -22,3 +25,16 @@ io.on('connection', (socket) => {
 		console.log(data);
 	} 
 });
+
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+//web socket
+
+/*io.on('connection', (socket) => {
+	console.log("New connection: " + socket.id);
+	socket.on('messeage', inMsg);
+
+	function inMsg(data){
+		socket.broadcast.emit('messeage', data);
+		console.log(data);
+	} 
+});*/
