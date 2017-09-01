@@ -5,11 +5,11 @@ var app = express();
 var server = app.listen(process.env.PORT || 3000);
 console.log("My socket server is running");
 
-function listen(){
-	var host = server.adress().adress;
-	var port = server.adress().port;
+//function listen(){
+	var host = server.address().address;
+	var port = server.address().port;
 	console.log( "Listening at http://" + host + ':' + port);
-}
+//}
 
 app.use(express.static('public'));
 
