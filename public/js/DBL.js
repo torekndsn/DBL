@@ -12,7 +12,7 @@ function DBL(){
 	
 	var lastKeyHit = 0;
 	var lastWordLength = 0;
-	var previousKey;
+	var previousKey ="";
 	var inputText; 
 
 	var lastWord = "";
@@ -21,6 +21,7 @@ function DBL(){
 	var totalSpeed = 0;
 	var keyCount = 0; 
 	var topTime = 0; 
+	var thisKey;
 
 
 	var deletedWordsCount = 0; 
@@ -36,13 +37,16 @@ function DBL(){
 
 	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
 	$("#inputText").keydown(function( event ){
-		console.clear(); 
+	   // if (event.which !== 0 && !event.ctrlKey && !event.metaKey && !event.altKey){  
+
+		thisKey = event.key;
+		//console.clear(); 
 	 	currentMillis = event.timeStamp;
 		// get input text and get every word into array. 
 		inputText = this.value;
 		words = inputText.split(" ");
-		console.log("words length: " + words.length);
-		console.log("values length " + values.length);
+		//console.log("words length: " + words.length);
+		//console.log("values length " + values.length);
 
 		//reset time if nothing has been typed
 		if(inputText.length <=  0) lastKeyHit = currentMillis;
@@ -53,7 +57,7 @@ function DBL(){
 	
 
 		// S P A C I N G // - if break between words, get time interval to spacing
-		if(previousKey == " " || event.key == " "){
+		if(previousKey == " " || thisKey == " "){
 			spacing = word_spacing(timeData);
 			if( words.length > 1 && previousKey == " " && values[values.length-1].spacing == 0){
 				values[values.length-1].spacing = spacing;
@@ -62,7 +66,10 @@ function DBL(){
 		else spacing = 0; 
 
 		// D E L E T I N G   R U L E // - if words are delted, it chould affect font-size of next word
-		if( event.key == 'Backspace' && words.length < lastWordLength) deletedWordsCount++; 
+	
+		if(thisKey == 'Backspace' && words.length < lastWordLength) deletedWordsCount++; 
+		 
+
 
 		/* if(event.key == 'Enter') lineShift = true;
 		else lineShift = false;
@@ -71,7 +78,7 @@ function DBL(){
 
 	
 		// E N D   R E C O R D - if space is hit, a word is done. 
-		if(event.key == " " && words.length > 0){
+		if(thisKey == " " && words.length > 0){
 			//console.log("record is off");
 
 			if(!jumpWord) fontSize = word_size(deletedWordsCount);
@@ -79,7 +86,6 @@ function DBL(){
 		 	if(keyCount > 1 )tracking = typingSpeed(totalSpeed, keyCount);
 			else tracking = 0; 
 			if(words.length == 1) tracking = 0;	 //temporary fix for the first word
-		
 
 			lastWord = words[words.length-1];
 			//if(lineShift) lastWord = lastWord + "\n"; 
@@ -95,7 +101,7 @@ function DBL(){
 
 		// T R A C K I N G   A N D   P A U S E   C O L O R
 		else{
-			if(event.key != 'Backspace' && inputText.length > 1){
+			if(thisKey != 'Backspace' && inputText.length > 1){
 				//console.log("record is on");
 
 				totalSpeed += timeData;
@@ -116,7 +122,7 @@ function DBL(){
 
 
 		// F I X   D E L E T E   W O R D   B U G - When lastword is not " " after deleting, wrong word is enlarged	 
-		if(event.key == " " && lastWordLength > words.length ){
+		if(thisKey == " " && lastWordLength > words.length ){
 			jumpWord = true;
 		}
 
@@ -133,30 +139,36 @@ function DBL(){
 
  		// update 
 		lastJumpWord = jumpWord;
-		previousKey = event.key; 
+		previousKey = thisKey; 
  		lastWordLength = words.length; 
  		lastKeyHit = event.timeStamp;
- 		console.log("size: " + values[values.length-1].size);
- 		console.log("jumpWord setting: " + jumpWord);
+ 	//	}
 	})
 
 	$('#render').click(function(){ 
 		words = inputText.split(" ");
-     	renderText(words[words.length-1], previousKey);
+			if(thisKey == 'Enter') {
+			thisKey = '';
+			}
+     	renderText(words[words.length-1], thisKey);
    		 });
 
 	$('#send').click(function(){
 		words = inputText.split(" ");
-		renderChat(words[words.length-1], previousKey, values);
+			if(thisKey == 'Enter') {
+				thisKey = '';
+				}
+		renderChat(words[words.length-1], thisKey, values);
 
 			$('.textBox').val('');
+			inputText = "";
 			deletedWordsCount = 0;
 			jumpWord = false; 
 			totalSpeed = 0;
 			keyCount = 0; 
 			topTime = 0;
 			//fontSize = 16;
-
+			thisKey="";
 			deletedWordsCount = 0;
 			jumpWord = false; 
 			totalSpeed = 0;

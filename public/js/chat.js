@@ -1,8 +1,8 @@
 
-function renderChat(lastword, prevKey, dataArr){
+function renderChat(lastword, thisKey, dataArr){
 		var msg =""; 
-		if(prevKey != " "){
-			var lastword_ = lastword + prevKey;
+		if(thisKey != " "){
+			var lastword_ = lastword + thisKey;
 	 		dataArr.push({word: lastword_, spacing: 0, size: 16, tracking: 0, color: 90 });
 	 	}
 	
@@ -25,7 +25,7 @@ function renderChat(lastword, prevKey, dataArr){
 
 			msg += newStyle + w + " " + "</span>";
 		})
-
+	
  		console.log("dataArr: " + dataArr);
  		dataArr = []; 
  		//place own msg into chat

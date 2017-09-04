@@ -4,13 +4,13 @@
 	//------------- A P P L Y I N G   S T Y L E S   T O   T E X T ---------------//
 	///////////////////////////////////////////////////////////////////////////////
 	
-	function renderText(lastword, prevKey){
+	function renderText(lastword, thisKey){
 
-		if(prevKey != " "){
-			var lastword_ = lastword + prevKey;
+		if(thisKey != " "){
+			var lastword_ = lastword + thisKey;
 	 		values.push({word: lastword_, spacing: 0, size: 16, tracking: 0, color: 90 });
 	 	}
-	
+		console.log("values: " + values);
 		$("#outputText").empty();
  			jQuery.each(values, function(i, v) { 	
 
