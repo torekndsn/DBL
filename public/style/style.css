@@ -117,6 +117,7 @@ h2{
 
 	background-color: #F2F2F2;
 	white-space: pre;
+	word-wrap: break-word;
 }
 
 .content .chatcontainer .textBox{
