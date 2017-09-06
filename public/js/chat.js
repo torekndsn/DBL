@@ -63,7 +63,10 @@ function renderChat(lastword, thisKey, dataArr){
 
 	// I N C O M I N G   M S G   U P D A T E 
 	function newMsg(data){
-	//	console.log("received: " + data);
+
+		var height_ = $('.msgWrapper').height(); 
+		var thresh = Math.floor(height_/70);
+		
 		if( $(".msgWrapper > div").length > 4 ) $('.msgWrapper').find('div').first().remove();
 		var div ='<div class= "chat-object">' +
 					'<div class="right">' +
@@ -77,9 +80,11 @@ function renderChat(lastword, thisKey, dataArr){
 
 	// I N T E R N   M S G   U P D A T E 
 	function newMsgIntern (myMsg){
-	//	console.log("received: " + myMsg);
-		//$("#newMessageField").append(data);
-		if( $(".msgWrapper > div").length > 4 ) $('.msgWrapper').find('div').first().remove();
+
+		var height_ = $('.msgWrapper').height(); 
+		var thresh = Math.floor(height_/70);
+		console.log("thresh " + thresh);
+		if( $(".msgWrapper > div").length >= thresh ) $('.msgWrapper').find('div').first().remove();
 		var div ='<div class="chat-object">' +
 					'<div class="left">' +
 						'<h3> you </h3>' +
