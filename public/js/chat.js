@@ -32,8 +32,7 @@ function renderChat(lastword, thisKey, dataArr){
  		newMsgIntern(msg);
  		//send outputText to server	
  		socket.emit('messeage', msg);
- 		console.log("length of divs: " + $(".msgWrapper > div").length); 
- 		if( $(".msgWrapper > div").length > 4 ) $('.msgWrapper').find('div').first().remove();
+ 	
  	//	console.log("msg: " + msg);
  		//$('#render').text("reset");
 		//$("#render").off('click').on('click', reset);
@@ -65,6 +64,7 @@ function renderChat(lastword, thisKey, dataArr){
 	// I N C O M I N G   M S G   U P D A T E 
 	function newMsg(data){
 	//	console.log("received: " + data);
+		if( $(".msgWrapper > div").length > 4 ) $('.msgWrapper').find('div').first().remove();
 		var div ='<div class= "chat-object">' +
 					'<div class="right">' +
 						'<h3> stranger </h3>' +
@@ -79,6 +79,7 @@ function renderChat(lastword, thisKey, dataArr){
 	function newMsgIntern (myMsg){
 	//	console.log("received: " + myMsg);
 		//$("#newMessageField").append(data);
+		if( $(".msgWrapper > div").length > 4 ) $('.msgWrapper').find('div').first().remove();
 		var div ='<div class="chat-object">' +
 					'<div class="left">' +
 						'<h3> you </h3>' +
