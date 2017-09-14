@@ -154,7 +154,7 @@ function DBL(){
 	$('#render').click(function(){ 
 		words = inputText.split(" ");
 			if(thisKey == 'Enter') {
-			thisKey = ' ';
+		//	thisKey = ' ';
 			} 
      	renderText(words[words.length-1], thisKey);
    		 });
@@ -162,7 +162,7 @@ function DBL(){
 	$('#send').click(function(){
 		words = inputText.split(" ");
 			if(thisKey == 'Enter') {
-				thisKey = ' ';
+				//thisKey = ' ';
 				}
 		renderChat(words[words.length-1], thisKey, values);
 

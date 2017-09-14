@@ -7,6 +7,7 @@
 	function renderText(lastword, thisKey){
 
 		if(thisKey != " "){
+			if(thisKey == 'Enter') thisKey = ' ';
 			var lastword_ = lastword + thisKey;
 	 		values.push({word: lastword_, spacing: 0, size: 16, tracking: 0, color: 90 });
 	 	}
@@ -70,7 +71,7 @@
 	        	
 	        	if(typeof obj[k] === 'string'){
 	        	    if(obj[k].includes("\"") || obj[k].includes("\"")) obj[k] = "'" + obj[k] + "'";
-	        		if(obj[k].includes("\n")) obj[k] = "\""+"^"+obj[k]+"^"+"\"";
+	        		if(obj[k].includes("\n")) obj[k] = "\"" +obj[k]+"\"";
 	        		if(obj[k].includes(",")) obj[k] = "\"" + obj[k] + "\"";			//		"\"http://example.com\""
 	        		}
 	            if (ix) result += ",";
