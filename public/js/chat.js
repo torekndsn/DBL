@@ -2,6 +2,8 @@
 function renderChat(lastword, thisKey, dataArr){
 		var msg =""; 
 		if(thisKey != " "){
+			
+			if(thisKey == 'Enter') thisKey = ' ';
 			var lastword_ = lastword + thisKey;
 	 		dataArr.push({word: lastword_, spacing: 0, size: 16, tracking: 0, color: 90 });
 	 	}

@@ -151,18 +151,24 @@ function DBL(){
  	//	}
 	})
 
+	
 	$('#render').click(function(){ 
+		if(values.length > 0){	
 		words = inputText.split(" ");
 			if(thisKey == 'Enter') {
-		//	thisKey = ' ';
+			thisKey = ' ';
 			} 
      	renderText(words[words.length-1], thisKey);
-   		 });
+    	 }
+   	 });
+
+
 
 	$('#send').click(function(){
+	if(values.length > 0){	
 		words = inputText.split(" ");
 			if(thisKey == 'Enter') {
-				//thisKey = ' ';
+				thisKey = ' ';
 				}
 		renderChat(words[words.length-1], thisKey, values);
 
@@ -181,6 +187,10 @@ function DBL(){
 			keyCount = 0; 
 			topTime = 0;
 			values = [];
+		}
 	});
+
+
+
 	
 }
