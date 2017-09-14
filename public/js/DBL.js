@@ -44,7 +44,7 @@ function DBL(){
 	 	currentMillis = event.timeStamp;
 		// get input text and get every word into array. 
 		inputText = this.value;
-		words = inputText.split(" ");
+		words = inputText.replace( /\n/g, " " ).split( " " )
 		//console.log("words length: " + words.length);
 		//console.log("values length " + values.length);
 
@@ -78,9 +78,8 @@ function DBL(){
 
 	
 		// E N D   R E C O R D - if space is hit, a word is done. 
-		if(thisKey == " " && words.length > 0){
+		if(thisKey == " " || thisKey == 'Enter' && words.length > 0){
 			//console.log("record is off");
-
 			if(!jumpWord) fontSize = word_size(deletedWordsCount);
 
 		 	if(keyCount > 1 )tracking = typingSpeed(totalSpeed, keyCount);
@@ -88,6 +87,13 @@ function DBL(){
 			if(words.length == 1) tracking = 0;	 //temporary fix for the first word
 
 			lastWord = words[words.length-1];
+
+			if(thisKey == 'Enter') {
+				console.log("I pressed enter");
+				lastWord += '\n';
+			}
+			console.log("last Word: " + lastWord);
+
 			//if(lineShift) lastWord = lastWord + "\n"; 
 			values.push({word: String(lastWord), spacing: +spacing.toFixed(dec), size: +fontSize.toFixed(0), tracking: +tracking.toFixed(dec), color: +color.toFixed(0) });
 			//reset 
@@ -148,15 +154,15 @@ function DBL(){
 	$('#render').click(function(){ 
 		words = inputText.split(" ");
 			if(thisKey == 'Enter') {
-			thisKey = '';
-			}
+			thisKey = ' ';
+			} 
      	renderText(words[words.length-1], thisKey);
    		 });
 
 	$('#send').click(function(){
 		words = inputText.split(" ");
 			if(thisKey == 'Enter') {
-				thisKey = '';
+				thisKey = ' ';
 				}
 		renderChat(words[words.length-1], thisKey, values);
 

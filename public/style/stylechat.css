@@ -170,9 +170,9 @@ h3{
 	display: block; 
 	width:100%;
 	padding:12px 0px 12px 12px;
-	
-	white-space: pre;
+
 	word-wrap: break-word;
+	white-space: pre-line;
 	font-size: 16px;
 	font-family: 'Inconsolata', monospace;
 	color: #5A5A5A;
