@@ -90,7 +90,7 @@ function DBL(){
 
 			if(thisKey == 'Enter') {
 				console.log("I pressed enter");
-			//	lastWord += '\n';
+				lastWord += '\n';
 			}
 			console.log("last Word: " + lastWord);
 
