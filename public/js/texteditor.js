@@ -8,7 +8,7 @@
 
 		if(thisKey != " "){
 			var lastword_ = lastword + thisKey;
-			if(thisKey == 'Enter') lastword_ = '';
+			if(thisKey == 'Enter') lastword_ = "\u00A0";
 			
 	 		values.push({word: lastword_, spacing: 0, size: 16, tracking: 0, color: 90 });
 	 	}
