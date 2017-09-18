@@ -37,7 +37,6 @@ function DBL(){
 
 	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
 	$("#inputText").keydown(function( event ){
-	   // if (event.which !== 0 && !event.ctrlKey && !event.metaKey && !event.altKey){  
 
 		thisKey = event.key;
 		//console.clear(); 
@@ -45,8 +44,6 @@ function DBL(){
 		// get input text and get every word into array. 
 		inputText = this.value;
 		words = inputText.replace( /\n/g, " " ).split( " " )
-		//console.log("words length: " + words.length);
-		//console.log("values length " + values.length);
 
 		//reset time if nothing has been typed
 		if(inputText.length <=  0) lastKeyHit = currentMillis;
@@ -68,13 +65,7 @@ function DBL(){
 		// D E L E T I N G   R U L E // - if words are delted, it chould affect font-size of next word
 	
 		if(thisKey == 'Backspace' && words.length < lastWordLength) deletedWordsCount++; 
-		 
-
-
-		/* if(event.key == 'Enter') lineShift = true;
-		else lineShift = false;
-		console.log("lineshift: " + lineShift);
-		*/ 
+		
 
 	
 		// E N D   R E C O R D - if space is hit, a word is done. 
@@ -148,22 +139,39 @@ function DBL(){
 		previousKey = thisKey; 
  		lastWordLength = words.length; 
  		lastKeyHit = event.timeStamp;
- 	//	}
+
+
+ 		//Send messeage on enter
+ 		var hasFocus = $('.chatinput').is(':focus');
+ 		console.log("hasFocus: " + hasFocus)
+	 	if(hasFocus && thisKey == 'Enter' && !event.shiftKey){
+	 			event.preventDefault();
+				console.log("messeages should be send now");	
+				chatMessage();
+			} 
 	})
 
 	
 	$('#render').click(function(){ 
-		if(values.length > 0){	
-		words = inputText.split(" ");
+		//if(values.length > 0){	
+		words = inputText.replace( /\n/g, " " ).split( " " );
      	renderText(words[words.length-1], thisKey);
-    	 }
+    //	 }
    	 });
 
 
 
 	$('#send').click(function(){
-	if(values.length > 0){	
-		words = inputText.split(" ");
+		chatMessage();
+	});
+
+
+
+
+
+	function chatMessage(){
+	// if(values.length > 0){	
+		words = inputText.replace( /\n/g, " " ).split( " " );
 		renderChat(words[words.length-1], thisKey, values);
 
 			$('.textBox').val('');
@@ -181,8 +189,8 @@ function DBL(){
 			keyCount = 0; 
 			topTime = 0;
 			values = [];
-		}
-	});
+		//}
+	}
 
 
 

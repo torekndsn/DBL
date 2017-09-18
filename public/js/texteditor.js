@@ -5,15 +5,18 @@
 	///////////////////////////////////////////////////////////////////////////////
 	
 	function renderText(lastword, thisKey){
+		var msg = "";
 
+		$("#outputText").empty();
 		if(thisKey != " "){
-			var lastword_ = lastword + thisKey;
-			if(thisKey == 'Enter') lastword_ = "\u00A0";
+			var lastword = lastword + thisKey;
+			if(thisKey == 'Enter') lastword = "";
+			console.log("this is last word: " + lastword);
 			
-	 		values.push({word: lastword_, spacing: 0, size: 16, tracking: 0, color: 90 });
+	 		values.push({word: lastword, spacing: 0, size: 16, tracking: 0, color: 90 });
 	 	}
 	//	console.log("values: " + values);
-		$("#outputText").empty();
+		
  			jQuery.each(values, function(i, v) { 	
 
 			 var w = values[i].word;
@@ -30,9 +33,10 @@
 			";letter-spacing:" + tracking_ + "px" +
 			";color:" + newCol +
 			";\">";
-			//	console.log(newStyle + w + " " + "</span>");	
-			$("#outputText").append( $(newStyle + w + " " + "</span>"));
+			msg += newStyle + w + " " + "</span>";
+			
 		})
+ 		$("#outputText").append(msg);
 
 
  		 // make ready for csv export

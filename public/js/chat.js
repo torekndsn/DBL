@@ -35,26 +35,9 @@ function renderChat(lastword, thisKey, dataArr){
  		//send outputText to server	
  		socket.emit('messeage', msg);
  	
- 	//	console.log("msg: " + msg);
- 		//$('#render').text("reset");
-		//$("#render").off('click').on('click', reset);
  	}
 
-		
-
-			//values = []; 
-	/*	$('script').each(function(){
-				if ($(this).attr('src') !== 'https://code.jquery.com/jquery-3.2.1.min.js') {
-					if ($(this).attr('src') !== 'http://api.jquery.com/resources/events.js'){
-						if ($(this).attr('src') !== 'https://cdn.socket.io/socket.io-1.4.5.js'){
-
-							var old_src = $(this).attr('src');
-							$(this).attr('src', '');
-							setTimeout(function(){ $(this).attr('src', old_src + '?'+new Date()); }, 250);
-					}
-				}
-			}
-		}) */ 
+ 
 	
 
 
