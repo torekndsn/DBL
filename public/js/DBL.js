@@ -156,7 +156,7 @@ function DBL(){
 		if(values.length > 0){	
 		words = inputText.split(" ");
 			if(thisKey == 'Enter') {
-			thisKey = ' ';
+			//thisKey = '';
 			} 
      	renderText(words[words.length-1], thisKey);
     	 }
@@ -168,7 +168,7 @@ function DBL(){
 	if(values.length > 0){	
 		words = inputText.split(" ");
 			if(thisKey == 'Enter') {
-				thisKey = ' ';
+				//thisKey = '';
 				}
 		renderChat(words[words.length-1], thisKey, values);
 

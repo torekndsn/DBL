@@ -68,8 +68,8 @@ function renderChat(lastword, thisKey, dataArr){
 
 		var height_ = $('.msgWrapper').height(); 
 		var thresh = Math.floor(height_/70);
-		
-		if( $(".msgWrapper > div").length > 4 ) $('.msgWrapper').find('div').first().remove();
+		if( $(".msgWrapper > div").length >= thresh ) $('.msgWrapper').find('div').first().remove();;
+
 		var div ='<div class= "chat-object">' +
 					'<div class="right">' +
 						'<h3> stranger </h3>' +
@@ -85,8 +85,8 @@ function renderChat(lastword, thisKey, dataArr){
 
 		var height_ = $('.msgWrapper').height(); 
 		var thresh = Math.floor(height_/70);
-		console.log("thresh " + thresh);
 		if( $(".msgWrapper > div").length >= thresh ) $('.msgWrapper').find('div').first().remove();
+
 		var div ='<div class="chat-object">' +
 					'<div class="left">' +
 						'<h3> you </h3>' +
