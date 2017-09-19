@@ -43,6 +43,7 @@ function DBL(){
 	 	currentMillis = event.timeStamp;
 		// get input text and get every word into array. 
 		inputText = this.value;
+		console.log("inputText length: " + inputText.length);
 		words = inputText.replace( /\n/g, " " ).split( " " )
 
 		//reset time if nothing has been typed
@@ -170,7 +171,7 @@ function DBL(){
 
 
 	function chatMessage(){
-	// if(values.length > 0){	
+	 if(inputText.length > 0){	
 		words = inputText.replace( /\n/g, " " ).split( " " );
 		renderChat(words[words.length-1], thisKey, values);
 
@@ -181,15 +182,10 @@ function DBL(){
 			totalSpeed = 0;
 			keyCount = 0; 
 			topTime = 0;
-			//fontSize = 16;
+			inputText ="";
 			thisKey="";
-			deletedWordsCount = 0;
-			jumpWord = false; 
-			totalSpeed = 0;
-			keyCount = 0; 
-			topTime = 0;
 			values = [];
-		//}
+		}
 	}
 
 
