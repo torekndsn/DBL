@@ -95,6 +95,28 @@
 
 
 
+	/////////////////////////////////////////////////////////////
+	//------------- T E X T   T O   S P E E C H---------------//
+	////////////////////////////////////////////////////////////
+
+    	function questionsToSpeech(){
+			var msg = new SpeechSynthesisUtterance();
+			var voices = window.speechSynthesis.getVoices();
+				msg.voice = voices[17]; // Note: some voices don't support altering params
+				msg.voiceURI = 'native';
+				msg.volume = 1; // 0 to 1
+				msg.rate = 0.9; // 0.1 to 10
+				msg.pitch = 1; //0 to 2
+				msg.text = 'How would you describe your relationship to your mom?';
+				msg.lang = 'en-US';
+
+				speechSynthesis.speak(msg);
+		}
+
+
+
+
+
 	////////////////////////////////////////////////////////////////////////////////////
 	//------------- P R E V E N T   T E X T B O X   N A V I GA T I O N ---------------//
 	///////////////////////////////////////////////////////////////////////////////////

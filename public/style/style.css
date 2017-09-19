@@ -115,16 +115,14 @@ h2{
 	font-family: 'Inconsolata', monospace;
 	color: #5A5A5A;
 
-	background-color: #F2F2F2;
+	background-color: #F2F2F2;	 	
+}
+
+.content .boxcontainer #outputText{
 	word-wrap: break-word;
 	white-space: pre-line;
-	
-}
 
-.content .chatcontainer .textBox{
-	width: 100%;
 }
-
 
 .boxcontainer button{
 	margin-top: 24px;
