@@ -33,8 +33,7 @@ function renderChat(lastword, thisKey, dataArr){
  		//place own msg into chat
  		newMsgIntern(msg);
  		//send outputText to server	
- 		socket.emit('messeage', msg);
- 	
+ 		socket.emit('messeage', msg); 	
  	}
 
  
@@ -48,11 +47,6 @@ function renderChat(lastword, thisKey, dataArr){
 
 	// I N C O M I N G   M S G   U P D A T E 
 	function newMsg(data){
-
-		var height_ = $('.msgWrapper').height(); 
-		var thresh = Math.floor(height_/70);
-		if( $(".msgWrapper > div").length >= thresh ) $('.msgWrapper').find('div').first().remove();;
-
 		var div ='<div class= "chat-object">' +
 					'<div class="right">' +
 						'<h3> stranger </h3>' +
@@ -60,16 +54,13 @@ function renderChat(lastword, thisKey, dataArr){
 					'</div>' +
 				'</div>';
 	 	$(div).appendTo('.msgWrapper');
+	 		$(function () {
+  			$('#wrapper').scrollTop(1E10);
+		});
 	}
-
 
 	// I N T E R N   M S G   U P D A T E 
 	function newMsgIntern (myMsg){
-
-		var height_ = $('.msgWrapper').height(); 
-		var thresh = Math.floor(height_/70);
-		if( $(".msgWrapper > div").length >= thresh ) $('.msgWrapper').find('div').first().remove();
-
 		var div ='<div class="chat-object">' +
 					'<div class="left">' +
 						'<h3> you </h3>' +
@@ -77,4 +68,7 @@ function renderChat(lastword, thisKey, dataArr){
 					'</div>' +
 				'</div>';
 		$(div).appendTo('.msgWrapper');
+			$(function () {
+  			$('#wrapper').scrollTop(1E10);
+		});
 	}
