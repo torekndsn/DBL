@@ -19,9 +19,10 @@
   "dependencies": {
     "connect": "^3.6.3",
     "express": "^4.15.4",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "typed.js": "^2.0.6"
   },
-  "engines" : {
-    "node" : "6.10.1"
+  "engines": {
+    "node": "6.10.1"
   }
 }
