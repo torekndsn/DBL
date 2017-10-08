@@ -22,15 +22,15 @@
 	<div class="content"> 
 		<div class ="chatcontainer">
 			<h2>chat box</h2>
-			<div class="chatbox">
-				<div class ="msgWrapper"> 
+			<div class="chatbox" id="contentDiv">
+				<div class ="msgWrapper" id="wrapper"> 
 				</div>
 			</div> 
 		</div>
 		
 		<div class ="boxcontainer">
 			<h2>input text </h2>
-			<textarea id="inputText" class="textBox chatinput" contenteditable="true"></textarea>
+			<textarea id="inputText" class="textBox chatinput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"  contenteditable="true"></textarea>
 			<button id="send">send</button>
 		</div>
 
@@ -46,8 +46,10 @@
 <script type="text/javascript">
 
 	var socket = io();
-	//socket = io.connect('http://localhost:3000');
 	socket.on('messeage', newMsg);
+
+	//var content = document.getElementById("contentDiv");
+	//var wrapper = document.getElementById("wrapper");
 
 	courserFix();
 	var values = []; // make values global 
