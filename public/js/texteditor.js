@@ -10,7 +10,7 @@
 		$("#outputText").empty();
 		if(thisKey != " "){
 			var lastword = lastword + thisKey;
-			if(thisKey == 'Enter') lastword = "";
+			if(thisKey == 'Enter' || thisKey == 'Backspace') lastword = "";
 			
 	 		values.push({word: lastword, spacing: 0, size: 16, tracking: 0, color: 90 });
 	 	}

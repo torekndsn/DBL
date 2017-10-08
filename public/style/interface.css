@@ -39,6 +39,67 @@ h1 {
 	max-width: 960px;
 }
 
+#header{
+
+}
+
+
+
+.menu-div{
+	position: absolute;
+	float: right;
+}
+
+.menu-div h1{
+	float: left;
+	display: inline;
+}
+
+.menu-div ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.menu-div ul li{
+	float: right;
+}
+
+.menu-div ul li a{
+	font-size: 11px;
+	display: block;
+	color: #5A5A5A;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color: white;
+}
+
+.menu-div ul li a:hover{
+	color: #5B8AFD;
+
+}
+
+.menu-div .active{
+    color: #5B8AFD;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .headercontainer{
 	position: relative;

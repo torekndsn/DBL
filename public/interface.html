@@ -9,12 +9,21 @@
 </head>
 
 <body>
-	<div class = "headercontainer">
+
+
+<div class = "headercontainer">
+	<div class="menu-div">
+			<ul>
+		<li><a href="interface.html" class="active" style="padding-right: 0px;" >interface</a></li>
+		<li><a href="chat.html">chat</a></li>
+  		<li><a href="index.html">text editor</a></li>	
+ 	</ul>
+	 </div>
 		<div class = "textbox">
 			<h1 id="header"></h1>
 		</div>
 		<div id="sketch-holder" class= "p5container"></div>
-	</div>
+</div>
 
 
 
@@ -55,31 +64,37 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	<script type="text/javascript">
 			$(document).ready(function($){
-			var keyNotHit = true;
+			var keyNotHit = false;
 
-			var slowType = 40;
-			var fastType = 20; 
+			var slowType = 0;
+			var fastType = 0; 
  
 			// H E A D E R  
 			 var Type = new Typed('#header', {
-				strings: ["Hello!</br>^700Welcome to <b>Digital Body Language.</b> </br> ^700 Please sit down, and press any key to start. </br> ^1000 *********************************"],
+				strings: ["Hello!</br>^700Welcome to <b>Digital Body Language.</b> </br> ^700 Please sit down, and press any key to start. </br> ^200 *********************************"],
 				startDelay: 1000,
 				typeSpeed: fastType,
 				showCursor: false,
 				backSpeed: 10,
-				loop: true
+				loop: false,
+				onComplete: (self) => keyNotHit = true
 			});	
 			 	$( ".contentcontainer" ).hide();
 				$(document).keypress(function(event) {
 					if(keyNotHit){
 	     				keyNotHit = false;
+	     			
 
  					$(".headercontainer").fadeOut("normal", function() {
     				    $(this).remove();
     				});
     				 	$( ".contentcontainer" ).show();
-	     				new Typed("#introstart", introstart)
+	     				new Typed("#introstart", introstart);
+
+	     				console.log("enter was hid from: " + this);
+     					event.preventDefault();
      				}
+
 				});
 			
 
@@ -89,7 +104,7 @@
 			 // I N T R O D U K T I O N	
 
 			 var introstart = {
-			 	strings: ["///INTRODUKTION</br> ^700///////////////////////////////////////////////////////////////////////////"],
+			 	strings: ["///INTRODUCTION</br> ^700///////////////////////////////////////////////////////////////////////////"],
 				startDelay: 1000,
 				typeSpeed: fastType,
 				showCursor: false,
@@ -97,7 +112,7 @@
 			 }
 
 			 var introtext = {
-			 	strings: ["Welcome, and thank you for starting the Digital Body Language.<br><br>^700Whats about to happen is a performance. A performance from you.<br><br>^700Its going to be an embodiement of you action. An action you perform everyday, but an action which results dosen't reflect its process.<br><br>^700uhuh ... yih! i saw beyonces tizzles and my pizzle went crizzle sit amizzle, get down get down adipiscing elizzle. Nullizzle boofron velizzle, mofo go to hizzle, suscipizzle bizzle, gravida vizzle, arcu. Pellentesque go to hizzle tortizzle. Sizzle erizzle. Pizzle izzle dolor dapibus shiz tempizzle fo shizzle. Maurizzle pellentesque fo et turpizzle. Uhuh ..."],
+			 	strings: ["Welcome, and thank you for starting the Digital Body Language.<br><br>^700What's about to happen is a performance. A performance from you.<br><br>^700It's going to be an embodiement of you action. An action you perform everyday, but an action which result dosen't reflect its process.<br><br>^700uhuh ... yih! i saw beyonces tizzles and my pizzle went crizzle sit amizzle, get down get down adipiscing elizzle. Nullizzle boofron velizzle, mofo go to hizzle, suscipizzle bizzle, gravida vizzle, arcu. Pellentesque go to hizzle tortizzle. Sizzle erizzle. Pizzle izzle dolor dapibus shiz tempizzle fo shizzle. Maurizzle pellentesque fo et turpizzle. Uhuh ..."],
 				startDelay: 1000,
 				typeSpeed: slowType,
 				showCursor: false,
@@ -114,7 +129,7 @@
 
 
 			 var continued = {
-			 	strings: ["Do you wanna continue from here?</br> Type <b>'Yes'</b> to continue, or <b>'No'</b> to stop."],
+			 	strings: ["Do you wanna continue from here?</br> Type <b>'YES'</b> to continue, or <b>'NO'</b> to stop."],
 				startDelay: 1000,
 				typeSpeed: slowType,
 				showCursor: false,
@@ -123,6 +138,7 @@
 
 			
 			 $( "#fname" ).keydown(function( event ) {
+			 	console.log("Hehllo");
 			 	if(event.key == 'Enter'){
 				  if ( $( "input:eq(0)" ).val() === "yes" || $( "input:eq(0)" ).val() === "YES" ) {
 				  	$("#intro").fadeOut("normal", function() {
@@ -131,7 +147,13 @@
 				    new Typed("#decisionintro", decisionintro)
 				    event.preventDefault();
 				  }
-			}
+				 else if ($( "input:eq(0)" ).val() === "no" || $( "input:eq(0)" ).val() === "NO" ){
+				 	// nothing
+				 }
+				 else {
+				 	event.preventDefault();
+				 }
+				}
 			});
 
 
@@ -147,7 +169,7 @@
 			 }
 
 			  var decisiontext = {
-			 	strings: ["Your are going to do a peformance. And I'm going to ask you a question...</br></br>^700You asnweing the question with a fullfilled answer is going to be the performance</br></br>^700Are you ready to receive your question, and start the performance?"],
+			 	strings: ["Your are going to do a peformance. And I'm going to ask you a question...</br></br>^700You answering the question with an answer from your heart, is going to be the performance</br></br>^700Are you ready to receive your question, and start the performance?"],
 				startDelay: 1000,
 				typeSpeed: slowType,
 				showCursor: false,
@@ -163,7 +185,7 @@
 			 }
 
 			 var getquestion = {
-				strings: ["If you are ready, type <b>'Yes'</b> to get your question, or <b>'No'</b> to stop."],
+				strings: ["If you are ready, type <b>'YES'</b> to get your question, or <b>'NO'</b> to stop."],
 				startDelay: 1000,
 				typeSpeed: slowType,
 				showCursor: false,
@@ -171,23 +193,37 @@
 			}
 
 			$( '#fname2').keydown(function( event ){
-					if(event.key == 'Enter'){
-					if ( $( "input:eq(1)" ).val() === "yes" || $( "input:eq(1)" ).val() === "YES" ) {
-					}
-						
-							$("#decision").fadeOut("normal", function() {
-				    			$(this).remove();
-				    		}); 
+				
+				if(event.key == 'Enter'){
+					//event.preventDefault();
+					console.log("im typing enter...")
+					console.log( $( "#fname2" ).val());
 
-							new Typed("#question", question);
+
+					if ( $( "#fname2").val() === "yes" || $( "#fname2" ).val() === "YES" ) {
+						console.log("yes was typed");
+
+						$("#decision").fadeOut("normal", function() {
+					    	$(this).remove();
+					    }); 
+
+						new Typed("#question", question);
+						event.preventDefault();
+							 
+						}
+
+						else if( $( "#fname2" ).val() === "no" || $( "#fname2" ).val() === "NO" ) {
+							//noting
+						}
+						else {
 							event.preventDefault();
-					//	}
-					}
-				});
+						}			
+				}
+			});
 
 				 // Q U E S T I O N
 			 var question = {
-				strings: ["How would you describe your relationship to your mom?"],
+				strings: ["Question:</br></br>^1000How would you describe your relationship to your mom?"],
 				startDelay: 1000,
 				typeSpeed: slowType,
 				showCursor: false
