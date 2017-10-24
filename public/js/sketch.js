@@ -83,7 +83,7 @@ function draw() {
       yPos[index] += space;
       noiseFactor += 0.1;
     }
-    print(xNoise[45]);
+   // print(xNoise[45]);
   }
 }
 

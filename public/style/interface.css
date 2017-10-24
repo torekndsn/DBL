@@ -2,21 +2,28 @@
 html{
 	font-size: 24px;
 	font-family: 'Inconsolata', monospace;
+	height:100%;
 }
 
 body{
+	height:100%;
+	overflow: hidden;
 
 }
 
 .contentcontainer{
+
 	margin: auto;
 	max-width: 960px;
 	min-width: 200px;
-	padding-top: 100px;
+	height:80%;
+	/*
+	vertical-align: bottom;
+	overflow: hidden;
+	overflow-y:scroll;
+    overflow-x:hidden;
+    */ 
 }
-
-
-
 
 
 
@@ -132,13 +139,13 @@ h1 {
 }
 
 .text-section{
-	margin-top: 0px;
+	margin-top: 100px;
 	display: inline-block;
 }
 
 #fname, #fname2 {
 	height: 40px;
-	width: 300px;
+	width: 100%;
 	background-color: white;
 	border:none;
 	font-size: 24px;
@@ -149,6 +156,80 @@ h1 {
 #fname:focus{
 		outline: none;
 }
+
+
+
+
+.content{
+	display:none;
+}
+
+.boxcontainer{
+	 margin-top: 20px;
+  	 width: 100%;
+  	 height:auto;
+  	 float: left;   	 
+}
+
+
+.textBox{
+	height: 100px;
+	max-width: 100%;
+	display: block; 
+	padding:20px;
+	resize: none;
+	border: none;
+	width:100%;
+
+	font-size: 16px;
+	font-family: 'Inconsolata', monospace;
+	color: #5A5A5A;
+
+	background-color: #F2F2F2;	 	
+}
+
+.boxcontainer #outputText{
+	word-wrap: break-word;
+	white-space: pre-line;
+
+}
+
+.boxcontainer button{
+	margin-top: 24px;
+	font-family: 'Inconsolata', monospace;
+	background-color: #5B8AFD; /* hover: 4C80FF; */ 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.boxcontainer .textBox:focus{
+	pointer-events: none;
+}
+
+#export-btn{
+	margin-left: 12px;
+}
+
+.boxcontainer button:hover {background-color: #4C80FF;}
+
+.hide{
+	visibility: hidden;
+}
+
+#first{
+	margin-top: 40px;
+}
+
+#question{
+	margin-bottom: 0px;
+	display: block;
+}
+
 
 
 
