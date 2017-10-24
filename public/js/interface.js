@@ -3,8 +3,8 @@
 function interface(){
 
 			var keyNotHit = false;
-			var slowType = 0; //40
-			var fastType = 0; //20
+			var slowType = 40; //40
+			var fastType = 20; //20
  
 			///////////////// I N T R O    S C R E E N /////////////////
 			 var Type = new Typed('#header', {
@@ -197,6 +197,7 @@ function interface(){
 				showCursor: false,
 				onComplete: (self) =>  {
 					$('.content').fadeIn('normal');
+					$('body').css("overflow", "visible");
 				//	$('#inputText').focus();
 				}
 			}
