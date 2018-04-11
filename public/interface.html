@@ -29,29 +29,37 @@
 
 <!-- SECOND SCREEN -->
 <div id="screen1" class ="contentcontainer">
-	<h2 id="screen1_1"></h2>
-	<form>
-		 <input autocomplete="off" type="text" id="input_1" name="yes/no">
-	</form>
 
-	<h2 id="screen1_2"></h2>
-	<form>
-		 <input autocomplete="off" type="text" id="input_2" name="yes/no">
-	</form>
+	<div class="section1">
+		<h2 id="screen1_1"></h2>
+		<form>
+			 <input autocomplete="off" type="text" id="input_1" class="inputfield" name="yes/no" onkeypress="return event.keyCode != 13">
+		</form>
+	</div>
 
-	<h2 id="screen1_3"> </h2>
-	<form>
-		 <input autocomplete="off" type="text" id="input_3" name="yes/no">
-	</form>
+	<div class="section2">
+		<h2 id="screen1_2"></h2>
+		<form>
+			 <input autocomplete="off" type="text" id="input_2" class="inputfield" name="yes/no" onkeypress="return event.keyCode != 13">
+		</form>
+	</div>
+
+	<div class="section3">
+		<h2 id="screen1_3"></h2>
+		<form>
+			 <input autocomplete="off" type="text" id="input_3" class="inputfield" name="yes/no" onkeypress="return event.keyCode != 13">
+		</form>
+	</div>
+
+	<div class="section4">
+		<h2 id="screen2_1"></h2>
+		<form>
+			 <input autocomplete="off" type="text" id="input_4" class="inputfield" name="yes/no" onkeypress="return event.keyCode != 13">
+		</form>
+	</div>
+
 </div>
 
-<!-- THIRD SCREEN -->
-<div id="screen2" class ="contentcontainer">
-	<h2 id="screen2_2"></h2>
-	<form>
-		 <input autocomplete="off" type="text" id="input_1" name="yes/no">
-	</form>
-</div>
 
 
 <div class="text-section">
@@ -60,7 +68,7 @@
 
 	<!--  DBL CONTENT -->
 
-	<div class="content"> 
+	<div id="DBL-box" class="contentcontainer"> 
 		<div class ="boxcontainer">
 
 			<textarea id="inputText" class="textBox" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"></textarea>

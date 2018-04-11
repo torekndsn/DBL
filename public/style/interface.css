@@ -14,6 +14,7 @@ body{
 .contentcontainer{
 
 	margin: auto;
+	margin-top: 100px;
 	max-width: 960px;
 	min-width: 200px;
 	height:80%;
@@ -36,7 +37,8 @@ body{
 }
 
 h2{
-	font-size: 1em;
+	font-size: 1.5em;
+	line-height: 1.5em;
 }
 
 h1 {
@@ -143,12 +145,13 @@ h1 {
 	display: inline-block;
 }
 
-#fname, #fname2 {
+.inputfield{
 	height: 40px;
 	width: 100%;
 	background-color: white;
+	color: blue;
 	border:none;
-	font-size: 24px;
+	font-size: 1.5em;
 	font-family: 'Inconsolata', monospace;
 	outline: none;
 }

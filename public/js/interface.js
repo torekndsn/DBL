@@ -27,20 +27,149 @@ function interface(){
     				    $(this).remove();
     				});
 
- 					//display contencontainer
+ 					//DISPLAY SCREEN 1_1
     				$(".contentcontainer" ).show();
-	     				
 	     			var screen1_1 = new Typed("#screen1_1", {
-	     					strings: ["hello there", "lol"],
+	     					strings: ["Hi, please take a seat and write to me.<br> ^700What should I call you?"],
 	     					startDelay: 1000,
 	     					typeSpeed: slowType,
 	     					showCursor: false,
 	     					loop: false,
-	     					onComplete: (self) => console.log("done");
+	     					onComplete: (self) => {
+	     						$( "#input_1" ).focus();
+	     					}
 	     			}); 
-     					event.preventDefault();
      				}
+     				//return false;
 				});
+
+				 var name = "name";
+				  $( "#input_1" ).keydown(function( event ) {
+				  	if(event.key == 'Enter'){
+				  		name = $("#input_1").val(); 
+				  		console.log(name);
+				  		$(".section1").fadeOut("normal", function() {
+    				    	$(this).remove();
+    					});
+
+				  		//DISPLAY SCREEN 1_2
+				  		var screen1_2 = new Typed("#screen1_2", {
+				  			strings:["Nice to meet you, " + name + ".<br> ^700I am curious; do you ever have the feeling that something is lost when we communicate through technology?"],
+				  			startDelay: 1000,
+	     					typeSpeed: slowType,
+	     					showCursor: false,
+	     					loop: false,
+	     					onComplete: (self) => {
+	     					 $( "#input_2" ).focus();
+	     					}
+				  		})
+				  	}
+				
+				 });
+
+				 var answer2 = "empty";
+				 $( "#input_2" ).keydown(function( event ) {
+				  	if(event.key == 'Enter'){
+				  		answer2 = $("#input_2").val(); 
+				  		console.log("the answer: " + answer2);
+				  		if(wordInString(answer2, 'yes') || wordInString(answer2, 'YES')){
+				  			console.log("yes was a part");
+
+				  			$(".section2").fadeOut("normal", function() {
+    				    		$(this).remove();
+    						});
+
+						//DISPLAY SCREEN 1_3
+				  		var screen1_3 = new Typed("#screen1_3", {
+				  			strings:["Because you see, I was thinking about typing.<br>^700It’s an action that doesn’t reflect the process. You just typed your answers to me, but did you hesitate? Did you type that rushing, eager to see the next screen? <br><br>^700 Would you like to participate in a small test to reveal what of you disappears into the keyboard? <br> ^700Type <b>YES</b> to start or <b>BACK</b> to return to the home screen."],
+				  			startDelay: 1000,
+	     					typeSpeed: slowType,
+	     					showCursor: false,
+	     					loop: false,
+	     					onComplete: (self) => {
+	     						 $( "#input_3" ).focus();
+	     					}
+				  		})
+
+				  		}
+					}
+				}); 
+
+
+
+				 var answer3 = "empty";
+				 $( "#input_3" ).keydown(function( event ) {
+				  	if(event.key == 'Enter'){
+				  		answer3 = $("#input_3").val(); 
+				  		console.log("the answer: " + answer3);
+				  		if(wordInString(answer3, 'yes') || wordInString(answer3, 'YES'))
+				  		{
+				  			console.log("yes was a part");
+
+				  			$(".section3").fadeOut("normal", function() {
+    				    		$(this).remove();
+    						});
+
+							var screen2_1 = new Typed("#screen2_1", {
+				  			strings:["Great. It’s very simple. I will ask you one question. It may be quite personal, so if you want to back off, press ESC anytime. Otherwise, do not think too much. Just answer from your heart.<br>^700 Type GO when you are ready."],
+				  			startDelay: 1000,
+	     					typeSpeed: slowType,
+	     					showCursor: false,
+	     					loop: false,
+	     					onComplete: (self) => {
+	     						 $( "#input_4" ).focus();
+	     						}
+				  			})
+
+				  		}
+    					else if (wordInString(answer3, 'back') || wordInString(answer3, 'BACK')){
+    						location.reload();
+    					}
+    				}
+    			}); 
+
+				 var answer4 = "empty";
+				 $("#input_4").keydown(function ( event) {
+					if(event.key == 'Enter') {
+						answer4 = $("#input_4").val(); 
+						console.log(answer4);
+
+						if(wordInString(answer4, 'go') || wordInString(answer4, 'GO'))
+				  		{
+				  			console.log("i'll go");
+				  			$("#screen1").fadeOut("normal", function() {
+    				    		$(this).remove();
+    						});
+
+    					var question = new Typed("#question", {
+
+    						strings: ["Question:</br></br>^1000How would you describe your relationship to your mom?"],
+							startDelay: 1000,
+							typeSpeed: slowType,
+							showCursor: false,
+							onComplete: (self) =>  {
+								$('#DBL-box').fadeIn('normal');
+								$('body').css("overflow", "visible");
+								//	$('#inputText').focus();
+							}
+    					})	
+
+				  		}
+					}
+
+				 });
+
+				
+				
+			
+ 
+
+
+
+
+
+
+
 			 /* 
 			
 			 	 $( "#fname" ).keydown(function( event ) {
@@ -210,10 +339,10 @@ function interface(){
 				}
 			}
 
-
+*/ 
 			// F U N C T I O N   B A N K
 			function wordInString(s, word){
  				 return new RegExp( '\\b' + word + '\\b', 'i').test(s);
 			}
-			*/ 
+			
 		}
