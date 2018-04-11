@@ -7,8 +7,9 @@ function interface(){
 			var fastType = 20; //20
  
 			///////////////// I N T R O    S C R E E N /////////////////
+			$( ".contentcontainer" ).hide();
 			 var Type = new Typed('#header', {
-				strings: ["Hello!</br>^700Welcome to <b>Digital Body Language.</b> </br> ^700 Please sit down, and press any key to start. </br> ^200 *********************************"],
+				strings: ["Press any key<br>to discover your<br>digital body language."],
 				startDelay: 1000,
 				typeSpeed: fastType,
 				showCursor: false,
@@ -16,41 +17,58 @@ function interface(){
 				loop: false,
 				onComplete: (self) => keyNotHit = true,
 			});	
-			 	$( ".contentcontainer" ).hide();
+			 	
 				$(document).keypress(function(event) {
 					if(keyNotHit){
 	     				keyNotHit = false;
 	     			
-
+	     			//remove header container and intro
  					$(".headercontainer").fadeOut("normal", function() {
     				    $(this).remove();
     				});
-    				 	$( ".contentcontainer" ).show();
-	     				new Typed("#introstart", introstart);
 
-	     				console.log("enter was hid from: " + this);
+ 					//display contencontainer
+    				$(".contentcontainer" ).show();
+	     				
+	     			var screen1_1 = new Typed("#screen1_1", {
+	     					strings: ["hello there", "lol"],
+	     					startDelay: 1000,
+	     					typeSpeed: slowType,
+	     					showCursor: false,
+	     					loop: false,
+	     					onComplete: (self) => console.log("done");
+	     			}); 
      					event.preventDefault();
      				}
-
 				});
-		
-
-			///////////////// I N T R O D U K T I O N /////////////////
-
-			 var introstart = {
-			 	strings: ["///INTRODUCTION</br> ^700///////////////////////////////////////////////////////////////////////////"],
-				startDelay: 1000,
-				typeSpeed: fastType,
-				showCursor: false,
-				onComplete: (self) => {
-
-				 new Typed("#introtext", introtext);
-				 $('#div1').scrollTop($('#div1')[0].scrollHeight);
+			 /* 
+			
+			 	 $( "#fname" ).keydown(function( event ) {
+			 	console.log("Hehllo");
+			 	if(event.key == 'Enter'){
+			 		if(wordInString($( "input:eq(0)" ).val(), 'yes') || wordInString($( "input:eq(0)" ).val(), 'YES'))
+				   {
+				  	$("#intro").fadeOut("normal", function() {
+    				    $(this).remove();
+    				});
+				    new Typed("#decisionintro", decisionintro);
+				    $('#div1').scrollTop($('#div1')[0].scrollHeight);
+				    event.preventDefault();
+				  }
+				 else if (wordInString($( "input:eq(0)" ).val(), 'no') || wordInString($( "input:eq(0)" ).val(), 'NO')){
+				 	// nothing
+				 }
+				 else {
+				 	event.preventDefault();
+				 }
 				}
-			 }
+			});
 
 
-			 var introtext = {
+
+
+
+			 var screen2_2 = {
 			 	strings: ["Welcome, and thank you for starting the Digital Body Language.<br><br>^700What's about to happen is a performance. A performance from you.<br><br>^700It's going to be an embodiement of you action. An action you perform everyday, but an action which result dosen't reflect its process.<br><br>^700uhuh ... yih! i saw beyonces tizzles and my pizzle went crizzle sit amizzle, get down get down adipiscing elizzle. Nullizzle boofron velizzle, mofo go to hizzle, suscipizzle bizzle, gravida vizzle, arcu. Pellentesque go to hizzle tortizzle. Sizzle erizzle. Pizzle izzle dolor dapibus shiz tempizzle fo shizzle. Maurizzle pellentesque fo et turpizzle. Uhuh ..."],
 				startDelay: 1000,
 				typeSpeed: slowType,
@@ -74,19 +92,9 @@ function interface(){
 			 }
 
 
-			 var continued = {
-			 	strings: ["Do you wanna continue from here?</br> Type <b>'YES'</b> to continue, or <b>'NO'</b> to stop."],
-				startDelay: 1000,
-				typeSpeed: slowType,
-				showCursor: false,
-				onComplete: (self) => {
-				 $( "#fname" ).focus()
-				 $('#div1').scrollTop($('#div1')[0].scrollHeight);
-				}
-			 } 
 
 			
-			 $( "#fname" ).keydown(function( event ) {
+			 $( "#fname5" ).keydown(function( event ) {
 			 	console.log("Hehllo");
 			 	if(event.key == 'Enter'){
 			 		if(wordInString($( "input:eq(0)" ).val(), 'yes') || wordInString($( "input:eq(0)" ).val(), 'YES'))
@@ -207,4 +215,5 @@ function interface(){
 			function wordInString(s, word){
  				 return new RegExp( '\\b' + word + '\\b', 'i').test(s);
 			}
+			*/ 
 		}
