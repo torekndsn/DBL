@@ -58,24 +58,16 @@
 		</form>
 	</div>
 
-</div>
-
-
-
-<div class="text-section">
-	<h2 id="question"></h2>
-</div>
-
+	<div class="section5">
+		<h2 id="question"></h2>
+	</div>
 	<!--  DBL CONTENT -->
-
 	<div id="DBL-box" class="contentcontainer"> 
-		<div class ="boxcontainer">
-
+		<div class ="boxcontainer" id="input-section">
 			<textarea id="inputText" class="textBox" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"></textarea>
-
 			<button id="render">render</button>
 		</div>
-		<div class ="boxcontainer">	
+		<div class ="boxcontainer" id="output-section">	
 			<div id="outputText" class="textBox"> </div> 
 			<button id="pdf-btn" class="hide" onclick="return xepOnline.Formatter.Format('outputText');">print PDF</button>
 			<a id ="a" target="_blank"> 
@@ -83,8 +75,9 @@
 			</a>
 		</div>
 	</div>
-
 </div>
+
+
 	
 	<script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript" src="js/texteditor.js"></script>

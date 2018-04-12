@@ -227,7 +227,18 @@ h1 {
 	display: block;
 }
 
+#DBL-box{
+display: none; 
+margin-top: 50px;
+}
 
+#output-section{
+display: none; 
+}
+
+#input-section{
+	display: none;
+}
 
 
 
