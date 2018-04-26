@@ -30,7 +30,7 @@ function interface(){
  					//DISPLAY SCREEN 1_1
     				$(".contentcontainer" ).show();
 	     			var screen1_1 = new Typed("#screen1_1", {
-	     					strings: ["Hi, please take a seat and write to me.<br> ^700What should I call you?"],
+	     					strings: ["Hi,<br>^700please take a seat and write to me.<br>^700What should I call you?"],
 	     					startDelay: 1000,
 	     					typeSpeed: slowType,
 	     					showCursor: false,
@@ -54,7 +54,7 @@ function interface(){
 
 				  		//DISPLAY SCREEN 1_2
 				  		var screen1_2 = new Typed("#screen1_2", {
-				  			strings:["Nice to meet you, " + name + ".<br> ^700I am curious; do you ever have the feeling that something is lost when we communicate through technology?"],
+				  			strings:["Nice to meet you, " + name + ".<br><br>^700I am curious;<br>^700do you ever have the feeling that something is lost when we communicate through technology?"],
 				  			startDelay: 1000,
 	     					typeSpeed: slowType,
 	     					showCursor: false,
@@ -77,17 +77,35 @@ function interface(){
 
 						//DISPLAY SCREEN 1_3
 				  		var screen1_3 = new Typed("#screen1_3", {
-				  			strings:["Because you see, I was thinking about typing.<br>^700It’s an action that doesn’t reflect the process. You just typed your answers to me, but did you hesitate? Did you type that rushing, eager to see the next screen? <br><br>^700 Would you like to participate in a small test to reveal what of you disappears into the keyboard? <br> ^700Type <b>YES</b> to start or <b>BACK</b> to return to the home screen."],
+				  			strings:["Because you see, I was thinking about typing.<br>^700It’s an action that doesn’t reflect the process.<br><br>^700 You just typed your answers to me, but...<br>^700 Did you hesitate? <br>^700Did you type that rushing, eager to see the next screen?^2000"],
 				  			startDelay: 1000,
 	     					typeSpeed: slowType,
 	     					showCursor: false,
 	     					loop: false,
 	     					onComplete: (self) => {
-	     						 $( "#input_3" ).focus();
+
+	     						$("#screen1_3").fadeOut("normal", function() {
+    				    			$(this).remove();
+    							});
+
+    							$("#screen1_3_5").css("display", "block");
+
+    							var screen1_3_5 = new Typed("#screen1_3_5", {
+						  			strings:["Would you like to participate in a small test to reveal what of you disappears into the keyboard? <br><br>^700Type <b>YES</b> to start or <b>BACK</b> to return to the home screen."],
+						  			startDelay: 1000,
+			     					typeSpeed: slowType,
+			     					showCursor: false,
+			     					loop: false,
+			     					onComplete: (self) => {
+			     						 $( "#input_3" ).focus();
+	     							}
+				  				})	 
 	     					}
 				  		})		
 					}
 				}); 
+
+				
 
 
 
@@ -105,15 +123,38 @@ function interface(){
     						});
 
 							var screen2_1 = new Typed("#screen2_1", {
-				  			strings:["Great. It’s very simple. I will ask you one question. It may be quite personal, so if you want to back off, press ESC anytime. Otherwise, do not think too much. Just answer from your heart.<br>^700 Type GO when you are ready."],
+				  			strings:["Great.<br><br>^700 It’s very simple. I will ask you one question.<br>^700 It may be quite personal, so if you want to back off, press ESC anytime.<br><br> Otherwise, do not think too much. Just answer from your heart.^2000"],
 				  			startDelay: 1000,
 	     					typeSpeed: slowType,
 	     					showCursor: false,
 	     					loop: false,
 	     					onComplete: (self) => {
-	     						 $( "#input_4" ).focus();
+
+		     					$("#screen2_1").fadeOut("normal", function() {
+	    				    		$(this).remove();
+	    						});
+
+	    						$("#screen2_1_5").css("display", "block");
+
+		     					var screen2_1 = new Typed("#screen2_1_5", {
+					  			strings:["Type GO when you are ready."],
+					  			startDelay: 1000,
+		     					typeSpeed: slowType,
+		     					showCursor: false,
+		     					loop: false,
+		     					onComplete: (self) => {
+		     						 $( "#input_4" ).focus();
+		     						}
+					  			})
+
 	     						}
 				  			})
+
+
+
+
+
+
 
 				  		}
     					else if (wordInString(answer3, 'back') || wordInString(answer3, 'BACK')){

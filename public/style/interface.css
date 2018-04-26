@@ -1,7 +1,7 @@
 
 html{
-	font-size: 24px;
-	font-family: 'Inconsolata', monospace;
+	font-size: 22px;
+	font-family: 'Overpass Mono', monospace;
 	height:100%;
 }
 
@@ -151,8 +151,8 @@ h1 {
 	background-color: white;
 	color: blue;
 	border:none;
-	font-size: 1.5em;
-	font-family: 'Inconsolata', monospace;
+	font-size: 2em;
+	font-family: 'Overpass Mono', monospace;
 	outline: none;
 }
 
@@ -179,7 +179,7 @@ h1 {
 	width:100%;
 
 	font-size: 16px;
-	font-family: 'Inconsolata', monospace;
+	font-family: 'Overpass Mono', monospace;
 	color: #5A5A5A;
 
 	background-color: #F2F2F2;	 	
@@ -193,7 +193,7 @@ h1 {
 
 .boxcontainer button{
 	margin-top: 24px;
-	font-family: 'Inconsolata', monospace;
+	font-family: 'Overpass Mono', monospace;
 	background-color: #5B8AFD; /* hover: 4C80FF; */ 
     border: none;
     color: white;
