@@ -1,0 +1,57 @@
+@font-face{
+	font-family: Calibre;
+	src: url(fonts/Calibre-Medium.otf);
+
+	font-family: Avenir;
+	src: url(fonts/AvenirLTStd-Medium.otf);
+
+	font-family: Charter;
+	src: url(fonts/CharterITC-Bold.otf);
+}
+
+html, body{
+	max-width: 100%;
+    overflow-x: hidden;
+}
+
+.content{
+	margin:125px;
+
+
+}
+
+.content p {
+	font-family: Charter;
+	font-size: 56px;
+	line-height: 73px;
+}
+
+.content .conversation-bot{
+	color: #0000F4;
+	max-width: 70%;
+	display: none;
+}
+
+.content .conversation-human{
+	visibility: hidden;
+
+}
+
+.content textarea{
+	font-family: Charter;
+	font-size: 56px;
+	line-height: 73px;
+	
+	width: 100%;
+	padding: 0 24px 0 40%;
+	margin-top: 25px;
+
+	border: none;
+    overflow: auto;
+    outline: none;
+	resize:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+}
