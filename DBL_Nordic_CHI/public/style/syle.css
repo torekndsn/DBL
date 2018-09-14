@@ -1,0 +1,159 @@
+@font-face{
+	font-family: Calibre;
+	src: url(fonts/Calibre-Medium.otf);
+
+	font-family: Avenir;
+	src: url(fonts/AvenirLTStd-Medium.otf);
+
+	font-family: Charter;
+	src: url(fonts/CharterITC-Bold.otf);
+}
+
+html, body{
+	max-width: 100%;
+    overflow: hidden;
+}
+
+.logo-text{
+	position: fixed;
+	top: 33%;
+	left: 97%;
+	transform: translate(-50%, -50%);
+
+	font-family: Avenir;
+	font-size: 18px;
+	color: black;
+
+	transform: rotate(90deg);
+	transform-origin:left top 0;
+	float: right;
+	width:100%;
+}
+
+.content{
+	margin:125px;
+}
+
+.content p {
+	font-family: Charter;
+	font-size: 48px;
+	line-height: 64px;
+}
+
+.content .conversation-bot{
+	color: black;
+	max-width: 70%;
+	display: none;
+}
+
+.content .conversation-human{
+	visibility: hidden;
+
+}
+
+.content textarea{
+	font-family: Charter;
+	font-size: 48px;
+	line-height: 64px;
+	color: #0000F4;
+	
+	width: 100%;
+	padding: 0 24px 0 40%;
+	margin-top: 25px;
+
+	visibility: hidden;
+	border: none;
+    overflow: auto;
+    outline: none;
+	resize:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+
+
+
+/* DBL SECTION STARTS HERE */ 
+.text-processer{
+	margin: 0 125px 0 125px;
+	height:100vh;
+	width: 81.5vw;
+	display: none;
+}
+
+.text-processer p{
+	font-family: Avenir;
+	font-size: 40px;
+	line-height: 55px;
+}
+
+.text-processer p span{
+	font-style: bold;
+}
+
+.text-processer .meta-text{
+	font-family: Avenir;
+	font-size: 18px;
+	line-height: 23px;
+	margin-top: -35px;
+	color: grey;
+}
+.text-processer .input-div{
+	margin-top: 100px;
+	text-align: center;
+}
+
+.text-processer .input-div textarea{
+	font-family: Avenir;
+	font-size: 24px;
+	line-height: 32px;
+	color: black;
+	border: none;
+
+	display: inline-block;
+	height:350px;
+	width: 55%;
+
+    overflow: auto;
+    outline: none;
+	resize:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.text-processer .hidden{
+	visibility: hidden;
+}
+
+.output-wrapper{
+	margin: 0 125px 0 125px;
+	height:100vh;
+	width: 81.5vw;
+	display: none;
+	padding-top: 200px;
+}
+
+.output-wrapper .meta-text{
+	font-family: Avenir;
+	font-size: 18px;
+	line-height: 23px;
+	margin-top: 200px;
+	color: grey;
+}
+
+#outputText{
+	display: inline-block;
+	height:350px;
+	width: 55%;
+	word-wrap: break-word;
+	white-space: pre-line;
+	 text-align: left;
+	font-family: Avenir;
+}
+
+.output-innerwrapper{
+	text-align: center;
+	margin-top: 150px;
+}

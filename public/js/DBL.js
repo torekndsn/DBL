@@ -51,8 +51,6 @@ function DBL(){
 
 		//if something has been typed, record keystroke timestamps.
 		if(inputText.length > 0) timeData = currentMillis - lastKeyHit;
-		
-	
 
 		// S P A C I N G // - if break between words, get time interval to spacing
 		if(previousKey == " " || thisKey == " "){
@@ -64,11 +62,8 @@ function DBL(){
 		else spacing = 0; 
 
 		// D E L E T I N G   R U L E // - if words are delted, it chould affect font-size of next word
-	
 		if(thisKey == 'Backspace' && words.length < lastWordLength) deletedWordsCount++; 
-		
 
-	
 		// E N D   R E C O R D - if space is hit, a word is done. 
 		if(thisKey == " " || thisKey == 'Enter' && words.length > 0){
 			//console.log("record is off");
@@ -112,12 +107,10 @@ function DBL(){
 			}
 		}
 
-	
 		// D E L E T E    W O R D S   F R O M    A R R A Y - if words have been deleted, remove from array. 
 		while(values.length > words.length) values.splice(values.length-1, 1);
 		var currentWord = values[values.length-1].word;
 		if(lastWord != currentWord) values[values.length-1].word = lastWord; 
-
 
 		// F I X   D E L E T E   W O R D   B U G - When lastword is not " " after deleting, wrong word is enlarged	 
 		if(thisKey == " " && lastWordLength > words.length ){
@@ -152,7 +145,6 @@ function DBL(){
 			} 
 	})
 
-	
 	$('#render').click(function(){ 
 		//if(values.length > 0){	
 		words = inputText.replace( /\n/g, " " ).split( " " );
@@ -160,14 +152,9 @@ function DBL(){
     //	 }
    	 });
 
-
-
 	$('#send').click(function(){
 		chatMessage();
 	});
-
-
-
 
 
 	function chatMessage(){

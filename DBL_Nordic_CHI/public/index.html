@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>DIGITAL BODY LANGUAGE</title>
+	<link rel="stylesheet" type="text/css" href="style/syle.css">
+	<script type="text/javascript" src="js/libraries/jquery.min.js"></script>
+	<script type="text/javascript" src="js/libraries/socket.io.js"></script>
+
+</head>
+	<body>
+		<h1 class="logo-text"> DIGITAL BODY LANGUAGE </h1>
+		<div class="content">
+			<p class="conversation-bot" id="para-1"></p>
+			<textarea class="chat-input" autofocus="true" spellcheck="false" autocomplete="off" rows="1" wrap="hard" class="conversation-human"></textarea>
+
+			<p class="conversation-bot" id="para-2"></p>
+			<textarea class="chat-input" autofocus="true" spellcheck="false" autocomplete="off" rows="1" wrap="hard" class="conversation-human"></textarea>
+
+			<p class="conversation-bot" id="para-3"></p>
+			<textarea class="chat-input" autofocus="true" spellcheck="false" autocomplete="off" rows="1" wrap="hard" class="conversation-human"></textarea>
+		</div>
+
+		<div class="text-processer">
+			<p class="conversation-bot"><span id="question"></span><br><b><span id="question-para"></span></b></p>
+			<p class="meta-text hidden">Dont like the question?<br> Use the arrow keys to change the question.</p>
+			<div class="input-div hidden">
+				<textarea id="inputText" class="input-field textBox" placeholder="Write your answer here..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false"></textarea>	
+			</div>
+		</div>
+		<div class="output-wrapper">
+			<p class="meta-text">Your digital body language</p>
+			<div class="output-innerwrapper">
+				<div id="outputText" class="textBox"> </div> 
+			</div>
+		</div>
+	<script type="text/javascript" src="js/libraries/xepOnline.jqPlugin.js"></script>
+	<script type="text/javascript" src="js/libraries/typed.js"></script>
+	<script type="text/javascript" src="js/libraries/autoResize.js"></script>
+
+	<script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript" src="js/texteditor.js"></script>
+	<script type="text/javascript" src="js/texts.js"></script>
+	<script type="text/javascript" src="js/interface.js"></script>
+	<script type="text/javascript" src="js/DBL.js"></script>
+	<script type="text/javascript">
+		
+		//init socket and make handshake with server
+		var socket = io.connect('http://localhost:8000');
+		socket.emit('msg', "hello server");
+		socket.on('msg', function(data){
+			console.log(data);
+		});	
+
+		courserFix(); //disable curser in editor
+		var csvFile;
+		var values = []; // make values global 
+		$(document).ready(function(){
+			$('.chat-input').autoResize();
+		})
+	</script>
+	</body>
+</html>
