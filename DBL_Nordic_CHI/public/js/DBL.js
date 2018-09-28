@@ -39,7 +39,14 @@ function DBL(){
 	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
 	$("#inputText").keydown(function( event ){
 		thisKey = event.key;
-		//console.clear(); 
+		console.log("choosedQuestion state: ") + choosedQuestion
+		if(thisKey == 'ArrowLeft' || thisKey =='ArrowRight' ) console.log("it was");
+		else{
+			choosedQuestion = true;
+			$(".meta-quest").animate({ opacity: 0}, 700, function(){
+				$(".indication").animate({ opacity: 100}, 1600,)
+			});
+		}		//console.clear(); 
 	 	currentMillis = event.timeStamp;
 		// get input text and get every word into array. 
 		inputText = this.value;
@@ -47,8 +54,9 @@ function DBL(){
 		words = inputText.replace( /\n/g, " " ).split( " " )
 
 		//reset time if nothing has been typed
-		if(inputText.length <=  0) lastKeyHit = currentMillis;
-
+		if(inputText.length <=  0){
+			lastKeyHit = currentMillis;
+		}
 		//if something has been typed, record keystroke timestamps.
 		if(inputText.length > 0) timeData = currentMillis - lastKeyHit;
 

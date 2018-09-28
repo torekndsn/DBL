@@ -1,9 +1,5 @@
 $(document).ready(function(){
-
-	var name = "name";
 	var skip = false;
-	var currentQuestion = questions[0];
-
 	//Skip conversation 
 	$("body").keydown(function( event ){
 		if(event.key == "ArrowDown" && !skip ){
@@ -66,9 +62,9 @@ $(document).ready(function(){
 	}
 
 	function initTextProcesser(){
-		$(".text-processer").css("display", "inline-block").hide().fadeIn('slow');
+		$(".text-processer").css("display", "block").hide().fadeIn('slow');
 		window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
-		initType(6,"#question","Question: <br>"+"^700"+"<b>"+questions[0]+"</b>");
+		initType(6,"#question","^700"+""+questions[0]);
 		skip = true;
 
 		noKeyNav();
@@ -76,19 +72,20 @@ $(document).ready(function(){
 		//Change question toggle
 		var questCounter = 0;
 		$("body").keydown(function( event ){
-			if(event.key == "ArrowRight"){
+			//console.log("choosedQuestion state: ") + choosedQuestion
+			if(event.key == "ArrowRight" && !choosedQuestion){
 				$("#question").empty();
-				$("#question").text("Question:")
 				if(questCounter > questions.length) questCounter = 0; 
 				else questCounter++;
-				$("#question-para").text(questions[questCounter]);
+				currentQuestion = questions[questCounter]; 
+				$("#question").text(questions[questCounter]);
 			}
-			if(event.key == "ArrowLeft"){
+			if(event.key == "ArrowLeft" && !choosedQuestion){
 				$("#question").empty();
-				$("#question").text("Question:")
 				if(questCounter <= 0) questCounter = questions.length-1; 
 				else questCounter--;
-				$("#question-para").text(questions[questCounter]);
+				currentQuestion = questions[questCounter]; 
+				$("#question").text(questions[questCounter]);
 			}
 		}); 
 	}

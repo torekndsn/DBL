@@ -31,6 +31,7 @@
 
 	.question{
 		left:0px;
+		max-width: 70%;
 	}
 
 	.title{
@@ -42,20 +43,27 @@
     -webkit-transform-origin: 0% 0%;
 	}
 	.name{
-		right:0px;
+		left:0px;
 		bottom: 0px;
 	}
 	.number{
-		left:0px;
+		right:0px;
 		bottom: 0px;
 	}
 
 	.dbl-content{
-		position: absolute;
-		width: 100%;
-		height:100%;
-		top:0;
-		left:0;
+		 width: 100%;
+		 height: 100%;
+		 text-align: center;
+		 line-height: 30px;
+	}
+
+	.dbl-content:before{
+		content: ' ';
+    	display: inline-block;
+    	vertical-align: middle; /* vertical alignment of the inline element */
+    	height: 100%;
+
 	}
 
 	p{
@@ -64,25 +72,21 @@
 		font-weight: 300;
 		color: black;
 		width:366px;
-		position: relative;
-
-		padding-top: 50%;
-		padding-left: 100px;
-
-
+		display: inline-block;
+    	vertical-align: middle;
+    	text-align: left;
 	}
 
 </style>
-<div class="outer-wrapper">
-	<div class="innter-wrapper">
-		<h1 class="question float_left">QUESTION</h1>
-		<h1 class="title float_right">DIGITAL BODY LANGUAGE</h1>
-		<h1 class="name float_left">TORE KNUDSEN </h1>
-		<h1 class="number float_right">#201</h1>
-		<div class="dbl-content">
-			<p>This is a test paragraph that we will try to see how works in practise. This is not easy to tell, so I'll try to do it like this. like a test and then we will hopefully get a better understanding of what is happening right now when we do it like that. Let me see in 2 seconds how this chunk of text looks like.
+<div class='outer-wrapper'>
+	<div class='innter-wrapper'>
+		<h1 class='question'>THIS IS TEST TO SEE HOW LONG IT WILL TAKE FOR THE TEXT TO COLLAPSE, WHAT ABOUT NOW?</h1>
+		<h1 class='title'>DIGITAL BODY LANGUAGE</h1>
+		<h1 class='name'>TORE KNUDSEN </h1>
+		<h1 class='number'>#201</h1>
+		<div class='dbl-content'>
+			<p>
 			</p>
 		</div>
 	</div>
-
 </div>

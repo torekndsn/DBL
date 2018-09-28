@@ -1,7 +1,7 @@
 
 		
 	 	var avrTimeTempo = 185; // The avarage texting time for a person.
-	 	var scaleFactor = 1.5; 		
+	 	var scaleFactor = 1.38; 		
 	 	var fontSize = Math.round(16*scaleFactor);   
 	 	$("#outputText").css("fontSize",fontSize);
 		/////////////////////////////////////////////////

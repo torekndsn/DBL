@@ -44,20 +44,9 @@
  		 csvFile = CSV(values);	
 
     	 console.log("name: " + name);
-    	 socket.emit('data', {csv:csvFile, dbl:msg});
-
- 	
- 		$('#export-btn').removeClass('hide');
- 		$('#pdf-btn').removeClass('hide');
- 		$('#render').text("reset");
-		$("#render").off('click').on('click', reset);
+    	 console.log("current quest: " + currentQuestion);
+    	 socket.emit('data', {csv:csvFile, dbl:msg, name:name, question:currentQuestion});
  	}
-
-
-	function reset() {  	
-		location.reload();
-	}
-
 
 	//////////////////////////////////////////////////////////////////////////////
 	//------------- S A V E   A N D   E X P O R T   A S   .C S V ---------------//
