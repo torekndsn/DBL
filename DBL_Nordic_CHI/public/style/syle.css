@@ -18,10 +18,12 @@ html, body{
 	margin:0px auto 0px auto;
 	max-width: 1200px;
 	text-align: center;
+	overflow: hidden;
 }
 
 .intro-screen h2{
 	margin: auto;
+	max-width: 100%;
 }
 .content{
 	min-height: 80vh;
@@ -107,6 +109,7 @@ html, body{
 	color: grey;
 }
 .text-processer .input-div{
+	height: 400px;
 	margin-top: 50px;
 	text-align: center;
 	visibility: hidden;
@@ -120,7 +123,6 @@ html, body{
 	border: none;
 
 	display: inline-block;
-	height:350px;
 	width: 50%;
 	max-width: 550px;
 
@@ -134,11 +136,18 @@ html, body{
 
 .text-processer .input-div .indication{
 	position: absolute;
-    padding-top: 132px;
+    padding-top: 124px;
     display: inline-block;
     margin-left: -212px;
     color: #b7b7b7;
     opacity: 0;
+    max-width: 200px;
+    text-align: start;
+}
+
+.text-processer .instructions{
+	visibility: hidden;
+	float:right;
 }
 
 .hidden{

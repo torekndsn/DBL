@@ -41,6 +41,7 @@
  		/////////////////////////////////////////////////////////////////////////////////////
  		//Process data to server
  		 // make ready for csv export
+ 		 values.push({word:currentQuestion, spacing: 0, size: 0, tracking: 0, color: 0});
  		 csvFile = CSV(values);	
 
     	 console.log("name: " + name);

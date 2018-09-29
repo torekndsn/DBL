@@ -9,8 +9,8 @@
 </head>
 	<body>
 		<h1 class="logo-text"> DIGITAL BODY LANGUAGE </h1>	
-		<div class="intro-screen">
-			<h2 class="conversation-style" style="display: inline-block;">SIT DOWN TO DISCOVER YOUR DIGITAL BODY LANGUAGE </h2>
+		<div class="intro-screen" id="intro_screen">
+			<h2 class="conversation-style" id="intro-text" style="display: inline-block;">DISCOVER YOUR DIGITAL BODY LANGUAGE </h2>
 		</div>
 		<div class="content">
 			<h2 class="conversation-style" id="para-1"></h2>
@@ -19,7 +19,8 @@
 			<h2 class="conversation-style" id="para-2"></h2>
 			<textarea class="chat-input conversation-style" autofocus="true" spellcheck="false" autocomplete="off" rows="1" wrap="hard"></textarea>
 
-			<h2 class="conversation-style" id="para-3"></h2>
+			<h2 class="conversation-style"
+			 id="para-3"></h2>
 			<textarea class="chat-input conversation-style" autofocus="true" spellcheck="false" autocomplete="off" rows="1" wrap="hard"></textarea>
 
 			<h2 class="conversation-style" id="para-4"></h2>
@@ -32,9 +33,12 @@
 			<p class="metatext-style hidden meta-quest">Dont like the question?<br> Use the arrow keys to change the question.</p>
 			<div class="input-div hidden">
 				<p class="indication metatext-style"> Write at least until here -----</p>
-				<textarea id="inputText" class="input-field textBox" placeholder="Write your answer here..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false"></textarea>	
-
+				<textarea id="inputText" class="input-field textBox" placeholder="Write your answer here..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="600" contenteditable="false"></textarea>
 			</div>
+			<div>
+				<p class="metatext-style instructions">When you're done, press DOWNARROW to see your digital body language</p>
+			</div>
+
 		</div>
 		<div class="output-wrapper">
 			<p class="metatext-style absolute">Your digital body language</p>
@@ -71,6 +75,19 @@
 		courserFix();
 		$(document).ready(function(){
 			$('.chat-input').autoResize();
+
+			var textarea = document.getElementById('inputText');
+			console.log(textarea);
+			textarea.addEventListener('keydown', autosize);
+			             
+			function autosize(){		
+			  var el = this;
+			  console.log(el)
+			  setTimeout(function(){
+			    el.style.cssText = 'height:auto; padding:0';
+			    el.style.cssText = 'height:' + el.scrollHeight + 'px';
+			  },0);
+			}
 
 			/*//Make fullscreen
 			document.onkeydown = function (argument) {

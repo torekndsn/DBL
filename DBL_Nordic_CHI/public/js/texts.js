@@ -1,7 +1,7 @@
-	 var conversation = ["Hi, please take a seat and write to me.<br>What should I call you?",
-	"Nice to meet you, . <br>^500I am curious; do you ever have the feeling that something is lost when we communicate through technology?",
-	"Because you see, I was thinking about typing.^500 It’s an action that doesn’t reflect the process.<br><br> ^500You just typed your answers to me, but did you hesitate? <br>^500 Did you type that rushing, eager to see the next screen?  <br><br>^1000Would you like to participate in a small test to reveal what of you disappears into the keyboard?<br><br>^500Type YES to start or BACK to return to the home screen.",
-	"Great. It’s very simple.<br>^500 I will ask you one question. It may be quite personal, so if you want to back off, press ESC anytime.<br><br>^500 Otherwise, do not think too much. Just answer from your heart.<br><br>^500 Type GO when you are ready."
+	 var conversation = ["Please take a seat and write to me.<br>What should I call you?",
+	"Nice to meet you, . <br><br>^500I am curious;^500 do you ever have the feeling that something is lost when we communicate through technology?",
+	"Because, you see, I was thinking about typing.^500 The result of this action does not reflect its process.<br><br> ^500When you type on a keyboard you don’t simply press key after key, without any hesitation, in a plain flow of letters.^1000 There is so much more happening there than what one may read in the final text.<br><br>^500 Do you see what I’m trying to say?^1000 Perhaps what comes next will clarify it for you...<br><br>^1500Would you like to participate in a small experiment to reveal what of you disappears into the keyboard? ^500Type YES to start or BACK to return to the home screen.",
+	"Great. It’s very simple.<br><br>^500I would like you to answer one question.<br><br>^1000It may be quite personal, so if you don’t feel comfortable just change the question.^1000 Otherwise, do not think too much. Just answer from your heart.<br><br>^500Type GO when you are ready."
 	]; 
 
 

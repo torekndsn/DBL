@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	var skip = false;
 	var start = false;
+
+
 	//Skip conversation 
 	$("body").keydown(function( event ){
 		if(event.key == "+" && !skip ){
@@ -9,7 +11,7 @@ $(document).ready(function(){
 		}
 		if(!start){
 			$(".content").css("display", "block").hide().fadeIn('slow');
-			window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+			window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});;
 			initType(1, "#para-1", conversation[0]);
 			start = true;
 		}
@@ -24,7 +26,7 @@ $(document).ready(function(){
 		$(idName).css("display", "inline-block");
 		var options = {
 		  strings: [stringObj],
-		  typeSpeed: 40,
+		  typeSpeed: 45,
 		  showCursor: false,
 		  onTypingPaused: (arrayPos, self) => {
 		  	window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
@@ -95,7 +97,6 @@ $(document).ready(function(){
 			}
 		}); 
 	}
-
 });
 
 

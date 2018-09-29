@@ -34,12 +34,13 @@ function DBL(){
 	var dec = 2; 
 	var lineShift = false;
 	var isRendered = false;
+	var minimumInput = false;
 
 
 	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
 	$("#inputText").keydown(function( event ){
 		thisKey = event.key;
-		console.log("choosedQuestion state: ") + choosedQuestion
+		//console.log("choosedQuestion state: ") + choosedQuestion
 		if(thisKey == 'ArrowLeft' || thisKey =='ArrowRight' ) console.log("it was");
 		else{
 			choosedQuestion = true;
@@ -50,7 +51,7 @@ function DBL(){
 	 	currentMillis = event.timeStamp;
 		// get input text and get every word into array. 
 		inputText = this.value;
-		console.log("inputText length: " + inputText.length);
+		//console.log("inputText length: " + inputText.length);
 		words = inputText.replace( /\n/g, " " ).split( " " )
 
 		//reset time if nothing has been typed
@@ -87,7 +88,7 @@ function DBL(){
 				console.log("I pressed enter");
 				lastWord += '\n';
 			}
-			console.log("last Word: " + lastWord);
+			//console.log("last Word: " + lastWord);
 
 			//if(lineShift) lastWord = lastWord + "\n"; 
 			values.push({word: String(lastWord), spacing: +spacing.toFixed(dec), size: +tempFontSize.toFixed(0), tracking: +tracking.toFixed(dec), color: +color.toFixed(0) });
@@ -141,7 +142,17 @@ function DBL(){
  		lastWordLength = words.length; 
  		lastKeyHit = event.timeStamp;
 
-		if(thisKey == "ArrowDown" && !isRendered){
+
+ 		if( $('#inputText').height() > $('.indication').outerHeight() && !minimumInput){
+ 			console.log("extended");
+ 			minimumInput = true;
+ 			$('.indication').css("visibility", "hidden").hide().fadeIn('slow');
+ 			$('.instructions').css("visibility","visible").hide().fadeIn('slow');
+ 		}
+
+ 		  
+ 		// Finish and render text 
+		if(thisKey == "ArrowDown" && !isRendered && minimumInput){
 			isRendered = true;
 			$("#inputText").blur();
 			$(".output-wrapper").css("display","block-inline").hide().fadeIn('slow');
