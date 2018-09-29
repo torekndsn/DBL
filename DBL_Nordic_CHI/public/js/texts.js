@@ -1,6 +1,7 @@
-	 var conversation = ["Hi, please take a seat and write to me.<br>^500 What should I call you?",
+	 var conversation = ["Hi, please take a seat and write to me.<br>What should I call you?",
 	"Nice to meet you, . <br>^500I am curious; do you ever have the feeling that something is lost when we communicate through technology?",
-	"Because you see,^500 I was thinking about typing.^500 It’s an action that doesn’t reflect the process.<br><br> ^500You just typed your answers to me, but did you hesitate? <br>^500 Did you type that rushing, eager to see the next screen?  <br><br>^1000Would you like to participate in a small test to reveal what of you disappears into the keyboard?<br><br>^500Type YES to start or BACK to return to the home screen."
+	"Because you see, I was thinking about typing.^500 It’s an action that doesn’t reflect the process.<br><br> ^500You just typed your answers to me, but did you hesitate? <br>^500 Did you type that rushing, eager to see the next screen?  <br><br>^1000Would you like to participate in a small test to reveal what of you disappears into the keyboard?<br><br>^500Type YES to start or BACK to return to the home screen.",
+	"Great. It’s very simple.<br>^500 I will ask you one question. It may be quite personal, so if you want to back off, press ESC anytime.<br><br>^500 Otherwise, do not think too much. Just answer from your heart.<br><br>^500 Type GO when you are ready."
 	]; 
 
 

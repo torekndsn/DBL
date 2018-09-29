@@ -6,10 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="style/syle.css">
 	<script type="text/javascript" src="js/libraries/jquery.min.js"></script>
 	<script type="text/javascript" src="js/libraries/socket.io.js"></script>
-
 </head>
 	<body>
 		<h1 class="logo-text"> DIGITAL BODY LANGUAGE </h1>	
+		<div class="intro-screen">
+			<h2 class="conversation-style" style="display: inline-block;">SIT DOWN TO DISCOVER YOUR DIGITAL BODY LANGUAGE </h2>
+		</div>
 		<div class="content">
 			<h2 class="conversation-style" id="para-1"></h2>
 			<textarea class="chat-input conversation-style blue" autofocus="true" spellcheck="false" autocomplete="off" rows="1" wrap="hard"></textarea>
@@ -18,6 +20,9 @@
 			<textarea class="chat-input conversation-style" autofocus="true" spellcheck="false" autocomplete="off" rows="1" wrap="hard"></textarea>
 
 			<h2 class="conversation-style" id="para-3"></h2>
+			<textarea class="chat-input conversation-style" autofocus="true" spellcheck="false" autocomplete="off" rows="1" wrap="hard"></textarea>
+
+			<h2 class="conversation-style" id="para-4"></h2>
 			<textarea class="chat-input conversation-style" autofocus="true" spellcheck="false" autocomplete="off" rows="1" wrap="hard"></textarea>
 		</div>
 
@@ -66,6 +71,24 @@
 		courserFix();
 		$(document).ready(function(){
 			$('.chat-input').autoResize();
+
+			/*//Make fullscreen
+			document.onkeydown = function (argument) {
+		    var docelem = document.documentElement;
+	
+			        if (docelem.requestFullscreen) {
+			            docelem.requestFullscreen();
+			        }
+			        else if (docelem.mozRequestFullScreen) {
+			            docelem.mozRequestFullScreen();
+			        }
+			        else if (docelem.webkitRequestFullScreen) {
+			            docelem.webkitRequestFullScreen();
+			        }
+			        else if (docelem.msRequestFullscreen) {
+			            docelem.msRequestFullscreen();
+			        } 
+			}*/
 		})
 	</script>
 	</body>

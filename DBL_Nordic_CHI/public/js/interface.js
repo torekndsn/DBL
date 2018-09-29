@@ -1,12 +1,23 @@
 $(document).ready(function(){
 	var skip = false;
+	var start = false;
 	//Skip conversation 
 	$("body").keydown(function( event ){
-		if(event.key == "ArrowDown" && !skip ){
+		if(event.key == "+" && !skip ){
 			skip = true;
 			initTextProcesser();
 		}
+		if(!start){
+			$(".content").css("display", "block").hide().fadeIn('slow');
+			window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+			initType(1, "#para-1", conversation[0]);
+			start = true;
+		}
 	}); 
+	checkAnswer(0);
+	checkAnswer(1);
+	checkAnswer(2);
+	checkAnswer(3);
 
 	// Init new Type function
 	var initType = function(screenIndex, idName, stringObj){
@@ -19,11 +30,10 @@ $(document).ready(function(){
 		  	window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
 		  },
 		  onComplete: (self) => {
-		  	if(!skip || screenIndex == 6){
-		  			if(screenIndex == 6){
+		  	if(!skip || screenIndex == 8){
+		  			if(screenIndex == 8){
 		  				$(".hidden").css("visibility","visible").hide().fadeIn('slow');
 		  			}
-
 				  	$( "textarea" ).eq( screenIndex ).css("visibility", "visible").hide().fadeIn('slow');
 				  	$('html,body').animate({scrollBottom: $('textarea').offset().top}, 200, function() {
 			        $("textarea" ).eq( screenIndex ).focus();
@@ -35,11 +45,6 @@ $(document).ready(function(){
 		}
 	var typed = new Typed(idName, options);
 	}
-
-	initType(1, "#para-1", conversation[0]);
-	checkAnswer(0);
-	checkAnswer(1);
-	checkAnswer(2);
 
 	function checkAnswer(index){
 		$( "textarea" ).eq(index).keydown(function( event ){
@@ -54,9 +59,10 @@ $(document).ready(function(){
 				}
 				else if (index == 1) initType(5, "#para-3", conversation[2]);
 				else if (index == 2) {
-					if( $(this).val().toLowerCase().includes("yes")) initTextProcesser();
+					if( $(this).val().toLowerCase().includes("yes")) initType(7, "#para-4", conversation[3]);
 					else if( $(this).val().toLowerCase().includes("back")) window.location.reload();
 				}
+				else if (index == 3) initTextProcesser();  
 			}
 		});
 	}
@@ -64,7 +70,7 @@ $(document).ready(function(){
 	function initTextProcesser(){
 		$(".text-processer").css("display", "block").hide().fadeIn('slow');
 		window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
-		initType(6,"#question","^700"+""+questions[0]);
+		initType(8,"#question","^700"+""+questions[0]);
 		skip = true;
 
 		noKeyNav();
