@@ -12,22 +12,41 @@
 html, body{
 	max-width: 100%;
     overflow: hidden;
+    margin:0;
 }
 .intro-screen{
 	height:100vh;
 	margin:0px auto 0px auto;
 	max-width: 1200px;
-	text-align: center;
 	overflow: hidden;
 }
 
+.intro-screen .intro-cta{
+	position: absolute;
+	bottom:6%;
+	width: 66%;
+}
+
+.intro-screen .intro-cta p{
+	font-family: Avenir;
+	color: black;
+	font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    float: right;
+
+}
+
 .intro-screen h2{
+	font-family: Charter;
+	font-size: 80px;
 	margin: auto;
 	max-width: 100%;
+	margin-top: 21vh;
 }
 .content{
-	min-height: 80vh;
-	margin:125px auto 125px auto;
+	min-height: 75vh;
+	margin: 10vh 39vh 15vh auto;
 	max-width: 1200px;
 	display:none;
 }
@@ -35,37 +54,30 @@ html, body{
 	position: fixed;
 	z-index: 1;
 	margin: 0;
-	text-align: center;
 	left:98%;
 	width:100vh;
 	transform: rotate(90deg);
 	transform-origin:0% 0%;
 	font-family: Avenir;
-	font-size: 21px;
 	color: black;
+	font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
 }
 
 .conversation-style{
 	display: none;
 	font-family: Charter;
-	font-size: 50.5px;
-	line-height: 64px;
+	font-size: 32px;
+	line-height: 48px;
 	color:black;
-	max-width: 75%;
-}
-
-.metatext-style{
-	font-family: Avenir;
-	font-size: 16px;
-	line-height: 23px;
-	color: grey;
-	margin:0;
+	max-width: 65%;
 }
 
 .content textarea{
 	display: block !important;
-	padding-left: 40%;
-	color: #0000F4;
+	padding-left: 13vh;
+	color: #0074FF;
 	width: 60%;
 	padding-top: 25px;
 	visibility: hidden;
@@ -76,21 +88,30 @@ html, body{
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    font-family: Avenir;
+    letter-spacing: 0.5px;
+    font-weight: 500;
 }
 
 
 /* DBL SECTION STARTS HERE */ 
 .text-processer{
-	margin: auto auto auto auto;
+	height: 90vh;
+	margin: 16vh 39vh 5vh auto;
 	max-width: 1200px;
-	padding-top: 1%;
-	height:100vh;
 	display: none;
+	padding-top: 5vh;
+}
+
+.text-processer .header-wrapper{
+	height:156px;
+	margin-top: 6vh;
 }
 
 .text-processer h2{
 	line-height: 55px;
-	max-width: 960px;
+	max-width: 1122px;
+	margin-top: 0px;
 }
 .grey{
 	color:grey;
@@ -99,31 +120,46 @@ html, body{
 
 #question{
 	display: inline-block;
+	font-size: 52px;
+	line-height: 65px;
+
 }
 
 .text-processer .meta-text{
 	font-family: Avenir;
-	font-size: 16px;
-	line-height: 23px;
-	margin-top: -20px;
-	color: grey;
+	color: black;
+	font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-left: 98vh;
 }
-.text-processer .input-div{
-	height: 400px;
+.text-processer .io-div{
+	display: inline-block;
+	width:85%;
 	margin-top: 50px;
-	text-align: center;
 	visibility: hidden;
+	position: absolute;
+	left:41vh;
 }
 
-.text-processer .input-div textarea{
+.text-processer .input-wrapper{
+	width:550px;
+	display: inline-block;
+	float: left;
+	margin-right: 152px;
+
+}
+.text-processer .input-wrapper textarea{
 	font-family: Avenir;
-	font-size: 21.3px;
-	line-height: 30.8px;
-	color: #000000a6;
+	font-size: 24px;
+	line-height: 36px;
+	color: #0074FF;
 	border: none;
+	font-weight: 500;
+	letter-spacing: 0.5px;
 
 	display: inline-block;
-	width: 50%;
+	width: 100%;
 	max-width: 550px;
 
     overflow: auto;
@@ -134,48 +170,140 @@ html, body{
     box-shadow: none;
 }
 
-.text-processer .input-div .indication{
+.text-processer .input-wrapper .indication{
 	position: absolute;
-    padding-top: 124px;
+    padding-top: 80px;
     display: inline-block;
-    margin-left: -212px;
-    color: #b7b7b7;
-    opacity: 0;
-    max-width: 200px;
+    left:-170px;
+    display: none;
+    max-width: 100px;
     text-align: start;
+    direction: rtl;
+    margin-left: 0vh;
 }
 
-.text-processer .instructions{
-	visibility: hidden;
-	float:right;
+.text-processer .output-wrapper{
+	height: 100%;
+	width:550px;
+	float:left;
+	display: none;
 }
+
+#outputText{
+	width: 100%;
+	word-wrap: break-word;
+	white-space: pre-line;
+	text-align: left;
+	margin: auto;
+	font-family: Avenir;
+	font-size: 24px;
+	line-height: 36px;
+	color: black;
+
+	border: none;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+}
+.text-processer .instructions-wrapper{
+	position: fixed;
+	bottom:6%;
+	width: 75%;
+}
+.text-processer .instructions{
+}
+
+.text-processer .instructions p{
+	margin:0;
+}
+
+
+
+.rules-wrapper{
+	background-color:#4d72d6;
+	height: 70vh;
+	width:100%;
+	display: none;
+	position: fixed;
+	bottom:-70vh;
+	left:0px;
+	z-index: 2;
+}
+
+.rules-wrapper .inner-wrapper{
+	width:84%;
+	margin:auto;
+	padding-top:115px;
+}
+
+.rules-wrapper .rule-element{
+	width:25%;
+	float: left;
+}
+
+.rules-wrapper h2{
+	font-family: Charter;
+	font-size: 32px;
+	color:white;
+}
+
+.rules-wrapper p{
+	color:white;
+	font-family: Avenir;
+	font-size: 18px;
+	width:67%;
+}
+
+.rules-wrapper:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.rules-wrapper .CTA{
+	position: absolute;
+	bottom: 40px;
+	width: 74%;
+    direction: rtl;
+}
+
+
+
+.end-screen{
+	height:100vh;
+	background-color:#4d72d6;
+	width:100%;
+	display: none;
+}
+
+.end-screen h2{
+	font-family: Charter;
+	display: inline-block !important;
+	font-size: 52px;
+	line-height: 65px;
+	max-width: 70%;
+	margin: 12.5vh;
+}
+
+.end-screen img{
+	position: absolute;
+
+}
+
+
+
+
+
+
+
+
 
 .hidden{
 	visibility: hidden;
 }
 
-.output-wrapper{
-	margin: auto auto auto auto;
-	height:100vh;
-	max-width:1200px;
-	display: none;
-	padding-top: 200px;
-}
-
 .absolute{
 	position: absolute;
 	margin-top:110px;
-}
-
-#outputText{
-	width: 50%;
-	max-width: 550px;
-	word-wrap: break-word;
-	white-space: pre-line;
-	text-align: left;
-	font-family: Avenir;
-	margin: auto;
-	line-height: 30px;
 }
 
 #output:before{

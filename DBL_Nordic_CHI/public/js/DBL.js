@@ -27,7 +27,7 @@ function DBL(){
 	var deletedWordsCount = 0; 
 	var spacing;
 	var tracking = 0; 
-	var color = 90;
+	var color = 0;
 	var jumpWord = false; 
 	var lastJumpWord; 
 
@@ -35,17 +35,22 @@ function DBL(){
 	var lineShift = false;
 	var isRendered = false;
 	var minimumInput = false;
-
+	var animationTrigge = false;
+	var rules_on = false;
+	var rule_toggle = true;
 
 	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
 	$("#inputText").keydown(function( event ){
 		thisKey = event.key;
 		//console.log("choosedQuestion state: ") + choosedQuestion
 		if(thisKey == 'ArrowLeft' || thisKey =='ArrowRight' ) console.log("it was");
-		else{
+		else if (!animationTrigge){
+			console.log("only once");
 			choosedQuestion = true;
-			$(".meta-quest").animate({ opacity: 0}, 700, function(){
-				$(".indication").animate({ opacity: 100}, 1600,)
+			$(".instructions").fadeOut('slow','linear', function(){
+				$(".indication").fadeIn('slow','linear', function(){
+					animationTrigge = true;
+				});
 			});
 		}		//console.clear(); 
 	 	currentMillis = event.timeStamp;
@@ -141,24 +146,82 @@ function DBL(){
 		previousKey = thisKey; 
  		lastWordLength = words.length; 
  		lastKeyHit = event.timeStamp;
-
-
- 		if( $('#inputText').height() > $('.indication').outerHeight() && !minimumInput){
- 			console.log("extended");
- 			minimumInput = true;
- 			$('.indication').css("visibility", "hidden").hide().fadeIn('slow');
- 			$('.instructions').css("visibility","visible").hide().fadeIn('slow');
- 		}
-
  		  
  		// Finish and render text 
 		if(thisKey == "ArrowDown" && !isRendered && minimumInput){
-			isRendered = true;
-			$("#inputText").blur();
+			//$("#inputText").blur();
+			$('#inputText').blur();
 			$(".output-wrapper").css("display","block-inline").hide().fadeIn('slow');
-			window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+  			$( ".io-div" ).animate({
+    			left: "-=13vh"
+  			}, 700, function(){
+    			isRendered = true;
+    			console.log(isRendered)
+  			});
+
+  			//Write reflective question
+  			$("#question").empty();
+  			var reflectiveQuestion = new Typed("#question", {
+			  strings: ["Read between the lines."],
+			  typeSpeed: 45,
+		  	  showCursor: false,
+			});
+  			$(".instructions").fadeOut('slow','linear', function(){
+				$(".instructions").html( "<p>PRESS <span style='color: #0074FF;'>UP ARROW </span>TO SEE THE RULES <p>");	
+				$(".instructions").fadeIn(1500,'linear');
+				});		
 			words = inputText.replace( /\n/g, " " ).split( " " );
      		renderText(words[words.length-1], thisKey);
 		}
 	})
+
+		//Go to RULES page. 
+		$("body").keydown(function( event ){
+
+			if( $('#inputText').height() > $('.indication').outerHeight() && !minimumInput){
+	 			console.log("extended");
+	 			//$(".instructions").css("visibility", "visible");
+	 			$(".instructions").html( "<p>PRESS <span style='color: #0074FF;'>DOWN ARROW </span><br> WHEN YOU FEEL READY</p>");
+
+	 			$(".indication").fadeOut('slow','linear', function(){
+					$(".instructions").fadeIn('slow','linear', function(){
+						minimumInput = true;
+					});
+				});
+ 		}
+
+			if(isRendered){
+				console.log("hy im inside!!")
+				if(rule_toggle){
+					if(event.key == "ArrowUp" && !rules_on){
+						console.log("hello there");
+							$('.rules-wrapper').css("display", "block");
+							$('.rules-wrapper').animate({
+								bottom:"+=70vh"
+							}, 1000);
+							rules_on = true;
+						}
+
+					if(event.key == "ArrowDown" && rules_on){
+						console.log("hello there");
+							$('.rules-wrapper').css("display", "block");
+							$('.rules-wrapper').animate({
+								bottom:"-=70vh"
+							}, 1000);
+							rules_on = false;
+						}
+					}
+
+				if(event.key == "F" || event.key == "f"){
+					rule_toggle = false;
+					console.log("finished");
+					$('.logo-text').css("color","white");
+					$('.instructions').css("display","none");
+					$('.CTA').css("display","none");
+					$('.rules-wrapper').css("display","none");
+					$('.end-screen').css("display","block");
+					window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+				}
+			}
+	});
 }

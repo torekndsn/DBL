@@ -44,7 +44,7 @@ socket.on('connection', function (socket) {
 			csv = data.csv;
 			name = data.name;
 			question = data.question;
-			var html_template = "<style>@font-face{font-family: Avenir;src: url(fonts/AvenirLTStd-Medium.otf);}html body{margin:0px;}.outer-wrapper {margin: auto;width:529px; height:776px;padding: 32px;}.innter-wrapper{position: relative;height:100%;}h1{position: absolute;margin:0px;font-family: Avenir;font-size: 12px;color: black;}.question{left:0px; max-width:50%;}.title{left:100%;width:100%;transform: rotate(90deg);-webkit-transform: rotate(90deg);transform-origin:0% 0%; -webkit-transform-origin: 0% 0%;}.name{left:0px;bottom: 0px;}.number{right:0px;bottom: 0px;}.dbl-content{ width: 100%; height: 100%; text-align: center; line-height: 30px;}.dbl-content:before{content: ' '; display: inline-block; vertical-align: middle; /* vertical alignment of the inline element */ height: 100%;}p{font-family: Avenir;font-size: 16px;font-weight: 300;color: black;width:366px;display: inline-block; vertical-align: middle; text-align: left;}</style><div class='outer-wrapper'><div class='innter-wrapper'><h1 class='question'>"+question.toUpperCase()+"</h1><h1 class='title'>DIGITAL BODY LANGUAGE</h1><h1 class='name'>"+name.toUpperCase()+"</h1><h1 class='number'>"+"#"+number+"</h1><div class='dbl-content'><p>"+text+"</p></div></div></div>"
+			var html_template = "<style>@font-face{font-family: Avenir;src: url(fonts/AvenirLTStd-Medium.otf);}html body{margin:0px;}.outer-wrapper {margin: auto;width:529px; height:776px;padding: 32px;}.innter-wrapper{position: relative;height:100%;}h1{position: absolute;margin:0px;font-family: Avenir;font-size: 12px;color: black;}.question{left:0px; max-width:50%;}.title{left:100%;width:100%;transform: rotate(90deg);-webkit-transform: rotate(90deg);transform-origin:0% 0%; -webkit-transform-origin: 0% 0%;}.name{left:0px;bottom: 0px;}.number{right:0px;bottom: 0px;}.dbl-content{ width: 100%; height: 100%; text-align: center; line-height: 30px;}.dbl-content:before{content: ' '; display: inline-block; vertical-align: middle; /* vertical alignment of the inline element */ height: 100%;}p{font-family: Avenir;font-size: 16px;font-weight: 300;color: black;width:366px;display: inline-block; vertical-align: middle; text-align: left;}</style><div class='outer-wrapper'><div class='innter-wrapper'><h1 class='question'>"+question.toUpperCase()+"</h1><h1 class='title'>DIGITAL BODY LANGUAGE</h1><h1 class='name'>"+"nordiCHI18".toUpperCase()+"</h1><h1 class='number'>"+"#"+number+"</h1><div class='dbl-content'><p>"+text+"</p></div></div></div>"
 			create_pdf(html_template);
 			save_csv(csv);
 		}
@@ -73,7 +73,7 @@ var cmd = require('node-cmd');
 function print_pdf(res){
 	console.log(res);
 	setTimeout(function(){
-		cmd.run("lpr output/"+file_name+".pdf");
+		cmd.run("lpr -o scaling=96 output/"+file_name+".pdf");
 		console.log("printed");
 	}, 3000);
 }

@@ -1,7 +1,7 @@
 
 		
 	 	var avrTimeTempo = 185; // The avarage texting time for a person.
-	 	var scaleFactor = 1.38; 		
+	 	var scaleFactor = 1.5; 		
 	 	var fontSize = Math.round(16*scaleFactor);   
 	 	$("#outputText").css("fontSize",fontSize);
 		/////////////////////////////////////////////////
@@ -35,11 +35,11 @@
 		/////////////////////////////////////////////////
 		function pauseColor(topTime){
 			if(topTime > 1000){
-				var tracking = map_range(topTime, 700, 2500, 90, 0);
-				tracking = constrain_value(tracking, 0, 90);
+				var tracking = map_range(topTime, 700, 2500, 0, 200);
+				tracking = constrain_value(tracking, 0, 200);
 				return tracking;
 			}
-			else return 90;
+			else return 0;
 		}
 
 
