@@ -1,0 +1,92 @@
+<style>
+	@font-face{
+	font-family: Avenir;
+	src: url(fonts/AvenirLTStd-Medium.otf);
+	}
+
+	html body{
+		margin:0px;
+	}
+	
+	.outer-wrapper {
+		margin: auto;
+		width:529px; 
+		height:776px;
+		padding: 32px;
+		border:1px solid black;
+	}
+
+	.innter-wrapper{
+		position: relative;
+		height:100%;
+	}
+
+	h1{
+		position: absolute;
+		margin:0px;
+		font-family: Avenir;
+		font-size: 12px;
+		color: black;
+	}
+
+	.question{
+		left:0px;
+		max-width: 70%;
+	}
+
+	.title{
+	left:100%;
+	width:100%;
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	transform-origin:0% 0%;
+    -webkit-transform-origin: 0% 0%;
+	}
+	.name{
+		left:0px;
+		bottom: 0px;
+	}
+	.number{
+		right:0px;
+		bottom: 0px;
+	}
+
+	.dbl-content{
+		 width: 100%;
+		 height: 100%;
+		 text-align: center;
+		 line-height: 30px;
+	}
+
+	.dbl-content:before{
+		content: ' ';
+    	display: inline-block;
+    	vertical-align: middle; /* vertical alignment of the inline element */
+    	height: 100%;
+
+	}
+
+	p{
+		font-family: Avenir;
+		font-size: 16px;
+		font-weight: 300;
+		color: black;
+		width:366px;
+		display: inline-block;
+    	vertical-align: middle;
+    	text-align: left;
+	}
+
+</style>
+<div class='outer-wrapper'>
+	<div class='innter-wrapper'>
+		<h1 class='question'>THIS IS TEST TO SEE HOW LONG IT WILL TAKE FOR THE TEXT TO COLLAPSE, WHAT ABOUT NOW?</h1>
+		<h1 class='title'>DIGITAL BODY LANGUAGE</h1>
+		<h1 class='name'>TORE KNUDSEN </h1>
+		<h1 class='number'>#201</h1>
+		<div class='dbl-content'>
+			<p>
+			</p>
+		</div>
+	</div>
+</div>
