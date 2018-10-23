@@ -1,9 +1,9 @@
 
 		
-	 	var avrTimeTempo = 185; // The avarage texting time for a person.		  
-
-
-
+	 	var avrTimeTempo = 185; // The avarage texting time for a person.
+	 	var scaleFactor = 1.5; 		
+	 	var fontSize = Math.round(16*scaleFactor);   
+	 	$("#outputText").css("fontSize",fontSize);
 		/////////////////////////////////////////////////
 		//------------- T R A C K I N G ---------------//
 		/////////////////////////////////////////////////
@@ -14,8 +14,8 @@
 				//console.log("avrSpeed: " + avrSpeed_);
 			//var tracking = map_range(avrSpeed, )
 			if(avrSpeed_ > 170 ){
-				trackingValue = map_range(avrSpeed_, 170, 300, 0, 7);
-				trackingValue = constrain_value(trackingValue, 0, 7);
+				trackingValue = map_range(avrSpeed_, 170, 300, 0, 7 * scaleFactor);
+				trackingValue = constrain_value(trackingValue, 0, 7 * scaleFactor);
 			 }
 			 else if(avrSpeed_ < 160){
 			 	trackingValue = map_range(avrSpeed_, 60, 160, -3, 0);
@@ -35,11 +35,11 @@
 		/////////////////////////////////////////////////
 		function pauseColor(topTime){
 			if(topTime > 1000){
-				var tracking = map_range(topTime, 700, 2500, 90, 0);
-				tracking = constrain_value(tracking, 0, 90);
+				var tracking = map_range(topTime, 700, 2500, 0, 200);
+				tracking = constrain_value(tracking, 0, 200);
 				return tracking;
 			}
-			else return 90;
+			else return 0;
 		}
 
 
@@ -55,7 +55,7 @@
 				//	console.log("interval: " + interval);
 				var spacing = map_range(interval, 1000,3000,0,70);
 				spacing = constrain_value(spacing,0,70);
-				return spacing;
+				return spacing*scaleFactor;
 			} else return 0; 		
 		}
 
@@ -67,8 +67,8 @@
 
 		function word_size(deleteCount){
 			console.log("deleted count: " + deleteCount);
-			var newSize = map_range(deleteCount, 0, 6,16, 40);
-			newSize = constrain_value(newSize,16, 40);
+			var newSize = map_range(deleteCount, 0, 6,fontSize, 40*scaleFactor);
+			newSize = constrain_value(newSize,fontSize, 40*scaleFactor);
 			console.log("size: " + newSize);
 			return newSize; 
 	    }
@@ -92,31 +92,6 @@
     		}
 
 
-
-
-
-	/////////////////////////////////////////////////////////////
-	//------------- T E X T   T O   S P E E C H---------------//
-	////////////////////////////////////////////////////////////
-
-    	function questionsToSpeech(){
-			var msg = new SpeechSynthesisUtterance();
-			var voices = window.speechSynthesis.getVoices();
-				msg.voice = voices[17]; // Note: some voices don't support altering params
-				msg.voiceURI = 'native';
-				msg.volume = 1; // 0 to 1
-				msg.rate = 0.9; // 0.1 to 10
-				msg.pitch = 1; //0 to 2
-				msg.text = 'How would you describe your relationship to your mom?';
-				msg.lang = 'en-US';
-
-				speechSynthesis.speak(msg);
-		}
-
-
-
-
-
 	////////////////////////////////////////////////////////////////////////////////////
 	//------------- P R E V E N T   T E X T B O X   N A V I GA T I O N ---------------//
 	///////////////////////////////////////////////////////////////////////////////////
@@ -126,6 +101,15 @@
 	    if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
 	        e.preventDefault();
 	    }
+		}, false);
+	}
+
+	function disable_keys(){
+		window.addEventListener("keydown", function(e) {
+	    	console.log("key: " + e.keyCode);
+	    	if(e.keyCode == 9) e.preventDefault();
+	      //  e.preventDefault();
+	    
 		}, false);
 	}
 

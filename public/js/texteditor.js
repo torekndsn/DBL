@@ -9,10 +9,10 @@
 
 		$("#outputText").empty();
 		if(thisKey != " "){
-			var lastword = lastword + thisKey;
+			//var lastword = lastword + thisKey;
 			if(thisKey == 'Enter' || thisKey == 'Backspace') lastword = "";
 			
-	 		values.push({word: lastword, spacing: 0, size: 16, tracking: 0, color: 90 });
+	 		values.push({word: lastword, spacing: 0, size: fontSize, tracking: 0, color: 90 });
 	 	}
 	//	console.log("values: " + values);
 		
@@ -37,26 +37,19 @@
 		})
  		$("#outputText").append(msg);
  		console.log("the final message: " + msg);
+ 		$('.dbl-text').html(msg)
 
-
+ 		/////////////////////////////////////////////////////////////////////////////////////
+ 		//Process data to server
  		 // make ready for csv export
+ 		 values.push({word:currentQuestion, spacing: 0, size: 0, tracking: 0, color: 0});
  		 csvFile = CSV(values);	
- 		 //console.log("CSV FILE: " + csvFile);
- 		 var a = document.getElementById("a");
-    	 a.href = "data:text/csv;base64," + btoa(csvFile);
+ 		 $('#temp_question').text(currentQuestion);
 
- 		
- 		$('#export-btn').removeClass('hide');
- 		$('#pdf-btn').removeClass('hide');
- 		$('#render').text("reset");
-		$("#render").off('click').on('click', reset);
+    	 console.log("name: " + name);
+    	 console.log("current quest: " + currentQuestion);
+    	 socket.emit('data', {csv:csvFile, dbl:msg, name:name, question:currentQuestion});
  	}
-
-
-	function reset() {  	
-		location.reload();
-	}
-
 
 	//////////////////////////////////////////////////////////////////////////////
 	//------------- S A V E   A N D   E X P O R T   A S   .C S V ---------------//

@@ -1,222 +1,147 @@
+$(document).ready(function(){
 
+	var start = false
+	var skip = false;
+	var name;
 
-function interface(){
-
-			var keyNotHit = false;
-			var slowType = 40; //40
-			var fastType = 20; //20
- 
-			///////////////// I N T R O    S C R E E N /////////////////
-			$( ".contentcontainer" ).hide();
-			 var Type = new Typed('#header', {
-				strings: ["Press any key<br>to discover your<br>digital body language."],
-				startDelay: 1000,
-				typeSpeed: fastType,
-				showCursor: false,
-				backSpeed: 10,
-				loop: false,
-				onComplete: (self) => keyNotHit = true,
-			});	
-			 	
-				$(document).keypress(function(event) {
-					if(keyNotHit){
-	     				keyNotHit = false;
-	     			
-	     			//remove header container and intro
- 					$(".headercontainer").fadeOut("normal", function() {
-    				    $(this).remove();
-    				});
-
- 					//DISPLAY SCREEN 1_1
-    				$(".contentcontainer" ).show();
-	     			var screen1_1 = new Typed("#screen1_1", {
-	     					strings: ["Hi,<br>^700please take a seat and write to me.<br>^700What should I call you?"],
-	     					startDelay: 1000,
-	     					typeSpeed: slowType,
-	     					showCursor: false,
-	     					loop: false,
-	     					onComplete: (self) => {
-	     						$( "#input_1" ).focus();
-	     					}
-	     			}); 
-     				}
-     				//return false;
-				});
-
-				 var name = "name";
-				  $( "#input_1" ).keydown(function( event ) {
-				  	if(event.key == 'Enter'){
-				  		name = $("#input_1").val(); 
-				  		console.log(name);
-				  		$(".section1").fadeOut("normal", function() {
-    				    	$(this).remove();
-    					});
-
-				  		//DISPLAY SCREEN 1_2
-				  		var screen1_2 = new Typed("#screen1_2", {
-				  			strings:["Nice to meet you, " + name + ".<br><br>^700I am curious;<br>^700do you ever have the feeling that something is lost when we communicate through technology?"],
-				  			startDelay: 1000,
-	     					typeSpeed: slowType,
-	     					showCursor: false,
-	     					loop: false,
-	     					onComplete: (self) => {
-	     					 $( "#input_2" ).focus();
-	     					}
-				  		})
-				  	}
-				 });
-
-				 var answer2 = "empty";
-				 $( "#input_2" ).keydown(function( event ) {
-				  	if(event.key == 'Enter'){
-				  		answer2 = $("#input_2").val(); 
-				  		console.log("the answer: " + answer2);
-				  			$(".section2").fadeOut("normal", function() {
-    				    		$(this).remove();
-    						});
-
-						//DISPLAY SCREEN 1_3
-				  		var screen1_3 = new Typed("#screen1_3", {
-				  			strings:["Because you see, I was thinking about typing.<br>^700It’s an action that doesn’t reflect the process.<br><br>^700 You just typed your answers to me, but...<br>^700 Did you hesitate? <br>^700Did you type that rushing, eager to see the next screen?^2000"],
-				  			startDelay: 1000,
-	     					typeSpeed: slowType,
-	     					showCursor: false,
-	     					loop: false,
-	     					onComplete: (self) => {
-
-	     						$("#screen1_3").fadeOut("normal", function() {
-    				    			$(this).remove();
-    							});
-
-    							$("#screen1_3_5").css("display", "block");
-
-    							var screen1_3_5 = new Typed("#screen1_3_5", {
-						  			strings:["Would you like to participate in a small test to reveal what of you disappears into the keyboard? <br><br>^700Type <b>YES</b> to start or <b>BACK</b> to return to the home screen."],
-						  			startDelay: 1000,
-			     					typeSpeed: slowType,
-			     					showCursor: false,
-			     					loop: false,
-			     					onComplete: (self) => {
-			     						 $( "#input_3" ).focus();
-	     							}
-				  				})	 
-	     					}
-				  		})		
-					}
-				}); 
-
-				
-
-
-
-				 var answer3 = "empty";
-				 $( "#input_3" ).keydown(function( event ) {
-				  	if(event.key == 'Enter'){
-				  		answer3 = $("#input_3").val(); 
-				  		console.log("the answer: " + answer3);
-				  		if(wordInString(answer3, 'yes') || wordInString(answer3, 'YES'))
-				  		{
-				  			console.log("yes was a part");
-
-				  			$(".section3").fadeOut("normal", function() {
-    				    		$(this).remove();
-    						});
-
-							var screen2_1 = new Typed("#screen2_1", {
-				  			strings:["Great.<br><br>^700 It’s very simple. I will ask you one question.<br>^700 It may be quite personal, so if you want to back off, press ESC anytime.<br><br> Otherwise, do not think too much. Just answer from your heart.^2000"],
-				  			startDelay: 1000,
-	     					typeSpeed: slowType,
-	     					showCursor: false,
-	     					loop: false,
-	     					onComplete: (self) => {
-
-		     					$("#screen2_1").fadeOut("normal", function() {
-	    				    		$(this).remove();
-	    						});
-
-	    						$("#screen2_1_5").css("display", "block");
-
-		     					var screen2_1 = new Typed("#screen2_1_5", {
-					  			strings:["Type GO when you are ready."],
-					  			startDelay: 1000,
-		     					typeSpeed: slowType,
-		     					showCursor: false,
-		     					loop: false,
-		     					onComplete: (self) => {
-		     						 $( "#input_4" ).focus();
-		     						}
-					  			})
-
-	     						}
-				  			})
+	//intro annimation
+	var animOption = {
+		strings: ["Try me^200 out.<br>Discover^300 your<br>^400Digital Body^600 Language.","Try me out.^50 <br>Discover your^80 <br>Digital^50 Body Language.","Try me^600 out.<br>Discover^710 your<br>^700Digital Body Language.","Try me out.<br>Discover^500 your<br>Digital^350 Body Language.","Try me out.<br>Discover your<br>Digital Body Language.","Try me out.<br>Discover your<br>Digital Body Language."],
+		typeSpeed: 40,
+		backSpeed: 40,
+		startDelay:1000,
+		backDelay:1000,
+		smartBackspace: false,
+		showCursor: false,
+		loop: true,
+	}
+	var introAnim = new Typed(".introScreen", animOption);
 
 
 
 
 
 
-
-				  		}
-    					else if (wordInString(answer3, 'back') || wordInString(answer3, 'BACK')){
-    						location.reload();
-    					}
-    				}
-    			}); 
-
-				 var answer4 = "empty";
-				 $("#input_4").keydown(function ( event) {
-					if(event.key == 'Enter') {
-						answer4 = $("#input_4").val(); 
-						//console.log();
-
-
-						if(wordInString(answer4, 'go') || wordInString(answer4, 'GO'))
-				  		{
-				  			console.log("i'll go");
-				  			$(".section4").fadeOut("normal", function() {
-    				    		$(this).remove();
-    						});
-
-    					var question = new Typed("#question", {
-
-    						strings: ["Question:</br>^1000"+questionArr[2]],
-							startDelay: 1000,
-							typeSpeed: slowType,
-							showCursor: false,
-							onComplete: (self) =>  {
-								$('#DBL-box').fadeIn('normal');
-								$("#input-section").fadeIn('normal');
-								$('body').css("overflow", "visible");
-								$('#inputText').focus();
-							}
-    					})	
-				  		}
-					}
-				 });
-
-				 $("#render").on('click', function(e) {
-					e.preventDefault(); 
-					$("#output-section").fadeIn('normal');
-				 }); 
-
-			// F U N C T I O N   B A N K
-			var questionArr = [
-			"How would you describe your relationship with your mother?",
-			"What is your earliest memory?", 
-			"Why is your best friend your best friend?",
-			"What is the hardest thing that has ever happened to you?",
-			"Can you describe your first kiss?",
-			"Which parent are you closer to and why?",
-			"If you could take back one thing you have done in life, what would it be?",
-			"What's the last thing that made you cry?",
-			"What's the stupidest thing you have ever done?",
-			"Have you ever broken somebody's heart? How?",
-			"What do you wish others would understand better about you?",
-			"What makes you feel like home?",
-			"If you could change anything about the way you were raised, what would you change?"
-			];
-
-			function wordInString(s, word){
- 				 return new RegExp( '\\b' + word + '\\b', 'i').test(s);
-			}
+$("body").keydown(function( event ){
+		if(!skip && event.key == "+"){
+			skip = true;
+			start = true;
+			initTextProcesser();
 		}
+		else if(!start){
+			start = true;
+			console.log("this dosnøt happen more")
+			$(".CTA-wrapper").fadeOut('slow','linear',function(){
+				$("#conv-interface").css("display", "inline-block")
+				window.scrollTo({behavior:"smooth",top:document.body.scrollHeight+100});
+				initConv(0,conversation[0]);
+				setTimeout(function(){
+					$('.introScreen ').remove();
+				}, 1000);
+				
+			});
+			
+		}
+	}); 
+
+
+	// Init new Type function
+	var idName = ""; 
+
+	var initConv = function(index,stringObj){
+		//$(idName).css("display", "inline-block");
+		var options = {
+		  strings: [stringObj],
+		  typeSpeed: 40,
+		  showCursor: false,
+		  onTypingPaused: (arrayPos, self) => {
+		  	window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight+100});
+		  },
+		  onComplete: (self) => {	
+		  	if(index < 4){
+			  $( "textarea" ).eq(index).css("visibility","visible");
+			  $( "textarea" ).eq(index).focus();
+			  checkAnswer(index);
+			}
+
+			if(index == 4){
+				$(".CTA-wrapper").html( "<p>AWKWARD QUESTION?<br> PRESS<span style='color: #0074FF;'> RIGHT ARROW </span>TO CHANGE IT</p>");
+				$(".CTA-wrapper").fadeIn('slow','linear');
+				$( "textarea" ).eq(index).focus();
+			}
+		  }
+		}
+		//Get Id name of text and create type.js element
+		idName = $('.computer').eq(index).attr('id');
+		var typed = new Typed('#'+idName, options);
+	}
+
+
+
+	//Check conversation asnwers 
+	var checkAnswer = function(index){
+		$( "textarea" ).eq(index).keydown(function( event ){
+			if(event.key == "Enter"){
+				$("textarea").blur();
+				window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+
+				// Check for conversation state:
+				if(index == 0){
+					name = $(this).val();
+				 	var nameToString = [conversation[1].slice(0,18), name, conversation[1].slice(18)].join('');
+					initConv(1,nameToString);
+				}
+				else if(index == 1) initConv(2,conversation[2]);
+				else if(index == 2){
+					if( $(this).val().toLowerCase().includes("yes")) initConv(3,conversation[3]);
+					else if( $(this).val().toLowerCase().includes("back")) window.location.reload();
+					else $(this).focus();
+				}
+				else if(index == 3){
+					if( $(this).val().toLowerCase().includes("go")) initTextProcesser(); 
+					else $(this).focus(); 
+				}
+			}
+		});
+	}
+
+
+
+	var initTextProcesser = function(){
+		$('#input-section').css("display","inline-block");
+		window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+		//$("#conv-interface").css("visibility", "hidden");
+		//$(".human").css("display", "none");
+
+		initConv(4,currentQuestion);
+		noKeyNav();
+		DBL();		
+
+		//Change question toggle
+		var questCounter = 0;
+		$("body").keydown(function( event ){
+			if(!choosedQuestion){
+				if(event.key == "ArrowRight" || event.key == "ArrowLeft"){
+					$("#question").empty();
+					if(event.key == "ArrowRight" && !choosedQuestion){
+						if(questCounter >= questions.length-1) questCounter = 0; 
+						else questCounter++;
+					}
+					if(event.key == "ArrowLeft" && !choosedQuestion){
+						if(questCounter <= 0) questCounter = questions.length-1; 
+						else questCounter--;
+					}
+					currentQuestion = questions[questCounter]; 
+					$("#question").text(questions[questCounter]);				
+				}
+			}
+		}); 
+	}
+
+	$(window).on('resize', function(){
+		window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+	});
+});
+
+
+

@@ -1,28 +1,19 @@
 {
-  "name": "chat",
+  "name": "DBL_Nordic_CHI",
   "version": "1.0.0",
-  "description": "Implementing DBL as a chat",
-  "main": "server.js",
+  "description": "",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/torekndsn/DBL.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/torekndsn/DBL/issues"
-  },
-  "homepage": "https://github.com/torekndsn/DBL#readme",
   "dependencies": {
-    "connect": "^3.6.3",
-    "express": "^4.15.4",
-    "socket.io": "^2.0.3",
-    "typed.js": "^2.0.6"
-  },
-  "engines": {
-    "node": "6.10.1"
+    "express": "^4.16.3",
+    "fullscreen": "^1.1.1",
+    "html-pdf": "^2.2.0",
+    "node-cmd": "^3.0.0",
+    "screenfull": "^3.3.3",
+    "socket.io": "^2.1.1"
   }
 }

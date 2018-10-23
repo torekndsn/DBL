@@ -1,163 +1,302 @@
+@font-face{
+	font-family: Calibre;
+	src: url(fonts/Calibre-Medium.otf);
 
-html{
-	font-size: 16px;
-	font-family: 'Inconsolata', monospace;
+	font-family: Avenir;
+	src: url(fonts/AvenirLTStd-Medium.otf);
+
+	font-family: Charter;
+	src: url(fonts/CharterITC-Bold.otf);
 }
 
-body{
-	 margin:auto;
-	 max-width: 960px;
-	 min-width: 200px;
+/* Font initializing */ 
 
-	 opacity: 1;
-     transition: 1s opacity;
+
+.introScreen {
+	font-family: Charter;
+	font-size: 80px;
+	padding: 5% 0;
 }
 
-body.fade-out {
-    opacity: 0;
-    transition: none;
+
+h2{	
+	font-family: Charter;
+	font-size: 32px;
+	line-height: 48px;
+	max-width: 65%;
+}
+.human{
+	font-family: Avenir;
+	color: #0074FF;
+	font-size: 32px;
+	letter-spacing: 0.5px;
+    font-weight: 500;
+}
+#question{
+	font-size: 52px;
+	line-height: 65px;
+	margin:0;
+	height: 240px;
+	max-width: 86%;
 }
 
-h1{
-font-size: 1.3em;
-}
 
-h2{
-	font-size: 1.1em;
-	color: #5A5A5A;
-	font-weight: 300;
-}
 h3{
-	line-height: 1.3em;
+	font-family: Avenir;
+	font-size: 24px;
+	line-height: 36px;
+	color: #0074FF;
 }
 
-
-
-
-
-.menu-div{
-	margin: 20px auto 80px auto;
-	height:80px;
+p{
+	font-family: Avenir;
+	font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
 }
 
-.menu-div h1{
-	float: left;
-	display: inline;
+.metaText{
+
 }
 
-.menu-div ul{
-	list-style-type: none;
+.logo-wrapper{
+	position: absolute;
+	margin-top:40px;
+}
+.logo-text{
+	position: fixed;
+	z-index: 1;
 	margin: 0;
-	padding: 0;
+	left:98%;
+	width:100vh;
+	transform: rotate(90deg);
+	transform-origin:0% 0%;
+	color: black;
+}
+
+/* END of Font initializing */ 
+
+
+
+/* Screen wrapping*/ 
+html body{
+	margin:0px;
 	overflow: hidden;
 }
-
-.menu-div ul li{
-	float: right;
+@media only screen and (max-width: 2400px){
+	.body-wrapper{
+		height:100%;
+		margin:0 auto 0 auto;
+		max-width: 1400px;
+		position: relative;
+	}
 }
 
-.menu-div ul li a{
-	display: block;
-	color: #5A5A5A;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
+@media only screen and (max-width: 1440px){
+	.body-wrapper{
+		height:100%;
+		margin:0 8vw 0 8vw;
+		max-width: 1400px;
+		position: relative;
+	}
 }
 
-.menu-div ul li a:hover{
-	color: #5B8AFD;
-
+.body-wrapper .section{
+	width: 100%;
+	height:100%;
+	min-height:84vh;
+	margin:8vh 0;
+	display: inline-block;
 }
+/* End of screen wrapping */ 
 
-.menu-div .active{
-    color: #5B8AFD;
+
+
+
+/* Start of Intro */ 
+.body-wrapper .introScreen h1{
+	padding: 10% 0;
 }
+/* End of intro */ 
 
 
 
 
-
-
-
-
-
-
-
-
-
-.content .intro p{
-	color: #5A5A5A;
-	max-width: 750px;
-	line-height: 1.3em;
-
+/* Start of Conversation*/ 
+.body-wrapper #conv-interface{
+	padding-bottom: 5vh;
+	display: none;
 }
-
-.content .boxcontainer{
-	 margin-top: 20px;
-	 display: inline-block;
-  	 width: 48%;
-  	 height:auto;
-  	 float: left; 	  	 
-}
-
-
-.content .boxcontainer:nth-child(2){
-	margin-right: 4%
-}
-
-.textBox{
-	height: 250px;
-	max-width: 100%;
-	display: block; 
-	padding:20px;
-	resize: none;
+.body-wrapper #conv-interface textarea{
+	margin-left: 13vh;
+	width: 56%;
 	border: none;
-	width:92%;
+	padding-top: 25px;
+    overflow: auto;
+    outline: none;
+	resize:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    padding: 16px 0; 
+    visibility: hidden;
+}
+/* End of conversation */ 
 
-	font-size: 16px;
-	font-family: 'Inconsolata', monospace;
-	color: #5A5A5A;
 
-	background-color: #F2F2F2;	 	
+/* Start of Input*/ 
+.body-wrapper .dbl-wrapper .indication{
+	width: 67px;
+	display: none;
+	padding-top: 145px;
+	position: absolute;
+	margin: 0;
+}
+.body-wrapper .dbl-wrapper .textbox-wrapper{
+    display: inline-block;
+    width: 100%;
+    left: 13vh;
+    position: absolute;
+    max-height: 60vh;
 }
 
-.content .boxcontainer #outputText{
+.body-wrapper .dbl-wrapper .textbox-wrapper .inner-wrapper{
+    width: 100%;
+    max-width: 60vh;
+    float: left;
+}
+.body-wrapper .dbl-wrapper .textbox-wrapper .input-wrapper{
+	margin-right: 7%;
+}
+.body-wrapper .dbl-wrapper .textbox-wrapper textarea{
+	font-family: Avenir;
+	font-size: 24px;
+	line-height: 36px;
+	color: #0074FF;
+	border: none;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+
+	display: inline-block;
+	width: 100%;
+	max-width: 550px;
+
+    overflow: hidden;
+    outline: none;
+	resize:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+#outputText{
+	width: 100%;
 	word-wrap: break-word;
 	white-space: pre-line;
+	text-align: left;
+	margin: auto;
+	font-family: Avenir;
+	font-size: 24px;
+	line-height: 36px;
+	color: black;
 
+	border: none;
+	font-weight: 500;
+	letter-spacing: 0.5px;
 }
 
-.boxcontainer button{
-	margin-top: 24px;
-	font-family: 'Inconsolata', monospace;
-	background-color: #5B8AFD; /* hover: 4C80FF; */ 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+
+/* CTA Section */ 
+.body-wrapper .CTA-wrapper{
+	position: absolute;
+	width: 84vw;
+	max-width: 1400px;
+	bottom: 4vh;
+	z-index: 1;
 }
 
-.boxcontainer .textBox:focus{
-	pointer-events: none;
+.body-wrapper .CTA-wrapper p{
+	float:right;
 }
-
-#export-btn{
-	margin-left: 12px;
-}
-
-.boxcontainer button:hover {background-color: #4C80FF;}
-
-.hide{
+/* End if CTA Section */ 
+.hidden{
 	visibility: hidden;
 }
 
-#first{
+.body-wrapper #input-section{
+	display: none;
+}
+
+
+/* Post experience section */ 
+.post-section{
+	background-color:#4d72d6;
+	height: 40vh;
+	width:100%;
+	position: fixed;
+	bottom:-40vh;
+	left:0px;
+	display:  none;
+}
+
+.post-section .inner-wrapper{
+	width:84%;
+	margin:auto;
+	display: block;
+}
+
+.post-section .rule-element{
+	width:25%;
+	float: left;
+}
+
+.post-section h2{
+	font-family: Charter;
+	font-size: 32px;
+	color:white;
+	line-height: 24px;
 	margin-top: 40px;
+
+}
+
+.post-section p{
+	color:white;
+	font-family: Avenir;
+	font-size: 14px;
+	font-weight:400;
+	width:80%;
+}
+
+.rules-wrapper:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 
 
- 
+.end-screen{
+	margin:0;
+    display: none;
+    width: 100%;
+    height: 101vh;
+    background-color:#4d72d6;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.end-screen .inner-wrapper{
+	margin:0 8vw 0 8vw;
+
+}
+
+.end-screen h2{
+	font-family: Charter;
+	display: inline-block !important;
+	font-size: 52px;
+	line-height: 65px;
+	max-width: 100%;
+}
+
+
