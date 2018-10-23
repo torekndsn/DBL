@@ -35,38 +35,39 @@ function DBL(){
 	var lineShift = false;
 	var isRendered = false;
 	var minimumInput = false;
-	var animationTrigge = false;
 	var rules_on = false;
 	var rule_toggle = true;
+	var lastScreen = false;
 
-	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
-	$("#inputText").keydown(function( event ){
-		thisKey = event.key;
-		//console.log("choosedQuestion state: ") + choosedQuestion
-		if(thisKey == 'ArrowLeft' || thisKey =='ArrowRight' ) console.log("it was");
-		else if (!animationTrigge){
-			console.log("only once");
-			choosedQuestion = true;
-			$(".instructions").fadeOut('slow','linear', function(){
-				$(".indication").fadeIn('slow','linear', function(){
-					animationTrigge = true;
-				});
-			});
-		}		//console.clear(); 
-	 	currentMillis = event.timeStamp;
-		// get input text and get every word into array. 
-		inputText = this.value;
-		//console.log("inputText length: " + inputText.length);
-		words = inputText.replace( /\n/g, " " ).split( " " )
 
+
+
+	var check_if_started = function(){
 		//reset time if nothing has been typed
 		if(inputText.length <=  0){
 			lastKeyHit = currentMillis;
+			resetValues();
+			if(choosedQuestion){
+				choosedQuestion = false;
+				$(".CTA-wrapper").fadeIn('slow','linear', function(){
+					$(".indication").fadeOut('slow','linear', function(){
+					});
+				});
+			}
 		}
-		//if something has been typed, record keystroke timestamps.
-		if(inputText.length > 0) timeData = currentMillis - lastKeyHit;
+		else{
+			if(!choosedQuestion){
+				choosedQuestion = true;
+				$(".CTA-wrapper").fadeOut('slow','linear', function(){
+					$(".indication").fadeIn('slow','linear', function(){
+					});
+				});
+			}
+		}
+	}
 
-		// S P A C I N G // - if break between words, get time interval to spacing
+
+	var check_spacing = function(){
 		if(previousKey == " " || thisKey == " "){
 			spacing = word_spacing(timeData);
 			if( words.length > 1 && previousKey == " " && values[values.length-1].spacing == 0){
@@ -74,13 +75,11 @@ function DBL(){
 			}
 		}
 		else spacing = 0; 
+	}
 
-		// D E L E T I N G   R U L E // - if words are delted, it chould affect font-size of next word
-		if(thisKey == 'Backspace' && words.length < lastWordLength) deletedWordsCount++; 
-
+	var add_distotion = function(){
 		// E N D   R E C O R D - if space is hit, a word is done. 
 		if(thisKey == " " || thisKey == 'Enter' && words.length > 0){
-			//console.log("record is off");
 			if(!jumpWord) tempFontSize = word_size(deletedWordsCount);
 
 		 	if(keyCount > 1 )tracking = typingSpeed(totalSpeed, keyCount);
@@ -90,27 +89,15 @@ function DBL(){
 			lastWord = words[words.length-1];
 
 			if(thisKey == 'Enter') {
-				console.log("I pressed enter");
 				lastWord += '\n';
 			}
-			//console.log("last Word: " + lastWord);
-
-			//if(lineShift) lastWord = lastWord + "\n"; 
 			values.push({word: String(lastWord), spacing: +spacing.toFixed(dec), size: +tempFontSize.toFixed(0), tracking: +tracking.toFixed(dec), color: +color.toFixed(0) });
-			//reset 
-			deletedWordsCount = 0;
-			jumpWord = false; 
-			totalSpeed = 0;
-			keyCount = 0; 
-			topTime = 0;
-			//tempFontSize = fontSize;
+			resetValues();
 		}
 
 		// T R A C K I N G   A N D   P A U S E   C O L O R
 		else{
 			if(thisKey != 'Backspace' && inputText.length > 1){
-				//console.log("record is on");
-
 				totalSpeed += timeData;
 				keyCount++;
 
@@ -120,6 +107,47 @@ function DBL(){
 				 }
 			}
 		}
+	}
+
+	var check_deletion = function(){
+		
+	}
+
+	var resetValues = function(){
+		deletedWordsCount = 0;
+		jumpWord = false; 
+		totalSpeed = 0;
+		keyCount = 0; 
+		topTime = 0;
+	}
+
+	///////////////////  START NEW LOOP WHEN KEY IS PRESSED  ///////////////////
+	$("#inputText").keydown(function( event ){
+
+		///////////////////////////////////////////////////////////////////////
+		//Get/update trackings
+		thisKey = event.key;
+		currentMillis = event.timeStamp;
+		inputText = this.value;
+		words = inputText.replace( /\n/g, " " ).split( " " ); // get input text and get every word into array. 
+
+		//Check if writing has begun
+		check_if_started();
+
+		//if something has been typed, record keystroke timestamps.
+		if(inputText.length > 0) timeData = currentMillis - lastKeyHit;
+
+		// S P A C I N G // - if break between words, get time interval to spacing
+		check_spacing();
+	
+		// D E L E T I N G   R U L E // - if words are delted, it chould affect font-size of next word
+		if(thisKey == 'Backspace' && words.length < lastWordLength) deletedWordsCount++; 
+
+		//Push values to word array 
+		add_distotion();
+
+		//
+		check_deletion();
 
 		// D E L E T E    W O R D S   F R O M    A R R A Y - if words have been deleted, remove from array. 
 		while(values.length > words.length) values.splice(values.length-1, 1);
@@ -152,7 +180,7 @@ function DBL(){
 			//$("#inputText").blur();
 			$('#inputText').blur();
 			$(".output-wrapper").css("display","block-inline").hide().fadeIn('slow');
-  			$( ".io-div" ).animate({
+  			$( ".textbox-wrapper" ).animate({
     			left: "-=13vh"
   			}, 700, function(){
     			isRendered = true;
@@ -166,9 +194,9 @@ function DBL(){
 			  typeSpeed: 45,
 		  	  showCursor: false,
 			});
-  			$(".instructions").fadeOut('slow','linear', function(){
-				$(".instructions").html( "<p>PRESS <span style='color: #0074FF;'>UP ARROW </span>TO SEE THE RULES <p>");	
-				$(".instructions").fadeIn(1500,'linear');
+  			$(".CTA-wrapper").fadeOut('slow','linear', function(){
+				$(".CTA-wrapper").html( "<p>PRESS <span style='color: #0074FF;'>UP ARROW </span>TO SEE THE RULES <p>");	
+				$(".CTA-wrapper").fadeIn(1500,'linear');
 				});		
 			words = inputText.replace( /\n/g, " " ).split( " " );
      		renderText(words[words.length-1], thisKey);
@@ -181,46 +209,57 @@ function DBL(){
 			if( $('#inputText').height() > $('.indication').outerHeight() && !minimumInput){
 	 			console.log("extended");
 	 			//$(".instructions").css("visibility", "visible");
-	 			$(".instructions").html( "<p>PRESS <span style='color: #0074FF;'>DOWN ARROW </span><br> WHEN YOU FEEL READY</p>");
-
+	 			$(".CTA-wrapper").html( "<p>PRESS <span style='color: #0074FF;'>DOWN ARROW </span><br> WHEN YOU FEEL READY</p>");
 	 			$(".indication").fadeOut('slow','linear', function(){
-					$(".instructions").fadeIn('slow','linear', function(){
+					$(".CTA-wrapper").fadeIn('slow','linear', function(){
 						minimumInput = true;
 					});
 				});
  		}
 
 			if(isRendered){
-				console.log("hy im inside!!")
 				if(rule_toggle){
 					if(event.key == "ArrowUp" && !rules_on){
-						console.log("hello there");
-							$('.rules-wrapper').css("display", "block");
-							$('.rules-wrapper').animate({
-								bottom:"+=70vh"
-							}, 1000);
+							$(".CTA-wrapper").html( "<p>PRESS <span style='color: white;'>F </span>TO FINNISH</p>");
+							$('.post-section').css("display", "block");
+
+							$('#input-section').css("min-height","104vh");
+
+							$('.post-section').animate({
+								bottom:"+=40vh"
+							}, 1000,function(){
+								window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+							});
 							rules_on = true;
+							
 						}
 
-					if(event.key == "ArrowDown" && rules_on){
+					/* if(event.key == "ArrowDown" && rules_on){
 						console.log("hello there");
-							$('.rules-wrapper').css("display", "block");
-							$('.rules-wrapper').animate({
-								bottom:"-=70vh"
+							$('.post-section').animate({
+								bottom:"-=300px"
 							}, 1000);
 							rules_on = false;
-						}
+						} */ 
 					}
 
-				if(event.key == "F" || event.key == "f"){
+				if(event.key == "F" || event.key == "f" && !lastScreen){
 					rule_toggle = false;
 					console.log("finished");
 					$('.logo-text').css("color","white");
 					$('.instructions').css("display","none");
 					$('.CTA').css("display","none");
 					$('.rules-wrapper').css("display","none");
-					$('.end-screen').css("display","block");
+					$('.end-screen').css("display","inline-block");
 					window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+					lastScreen = true;
+
+							/* $('.post-section').animate({
+								bottom:"+=80vh"
+							}, 1000,function(){
+								window.scrollTo({"behavior": "smooth","top":document.body.scrollHeight});
+							});
+							*/
 				}
 			}
 	});
